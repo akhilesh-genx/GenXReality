@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Montserrat", sans-serif;
+  --font-display: "Montserrat", sans-serif;
+
+  --color-brand-primary: #00ff41;
+  /* Matrix/Neon Green */
+  --color-brand-secondary: #008f11;
+  /* Darker Green */
+  --color-brand-dark: #050505;
+
+  --color-brand-cyan: #00ff41;
+  /* Mapping old var to new green for compatibility */
+  --color-brand-purple: #008f11;
+  /* Mapping old var to new green for compatibility */
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-black text-white font-sans;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-secondary;
+  }
+
+  .glass-panel {
+    @apply bg-black/40 backdrop-blur-lg border border-brand-primary/20;
+  }
+
+  .glass-card {
+    @apply bg-black/40 backdrop-blur-md border border-white/5 hover:border-brand-primary/50 transition-colors duration-300;
+  }
+}
+
+/* Hide Elfsight Free Widgets Branding */
+a[href*="elfsight.com"],
+a[href*="apps.elfsight.com"],
+[class*="elfsight-app"]>div>a,
+.eapps-link,
+div[class*="CustomCopyright__Container"],
+div[class*="Badge__Container"],
+[class*="WidgetBackground__Container"]>a,
+a[title*="Free"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  z-index: -9999 !important;
+}
