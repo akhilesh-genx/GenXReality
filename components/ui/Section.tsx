@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
+
 interface SectionProps extends React.HTMLAttributes<HTMLDivElement> {
   fullWidth?: boolean;
 }
@@ -11,12 +12,13 @@ export const Section = React.forwardRef<HTMLDivElement, SectionProps>(
       <section
         ref={ref}
         className={cn(
-          'relative py-20 md:py-32 overflow-hidden',
+          'relative py-12 md:py-20 overflow-hidden',
           fullWidth ? 'w-full' : '',
           className
         )}
         {...props}
       >
+
         {children}
       </section>
     );

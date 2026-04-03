@@ -1,46 +1,66 @@
+'use client';
+
 import React from 'react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost'; // Retained for backwards compatibility
   size?: 'sm' | 'md' | 'lg';
   href?: string;
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'primary', size = 'md', href, children, ...props }, ref) => {
+  ({ className, variant, size = 'md', href, children, ...props }, ref) => {
+    
+    // Base Style: "View all Services" style as the fallback/global layout
+    const baseVariant = 'bg-transparent border border-brand-primary text-brand-primary uppercase tracking-widest font-bold';
+
     const variants = {
-      primary: 'bg-white text-black hover:bg-gray-200 border-transparent',
-      secondary: 'bg-white/10 text-white hover:bg-white/20 border-transparent backdrop-blur-sm',
-      outline: 'bg-transparent border-white/20 text-white hover:bg-white/10 hover:border-white/40',
-      ghost: 'bg-transparent text-white hover:bg-white/5 border-transparent',
+      primary: baseVariant,
+      secondary: baseVariant,
+      outline: baseVariant,
+      ghost: baseVariant,
     };
 
     const sizes = {
       sm: 'px-4 py-2 text-sm',
       md: 'px-6 py-3 text-base',
-      lg: 'px-8 py-4 text-lg',
+      lg: 'px-8 py-4 text-base',
     };
 
+    const cleanedClassName = className?.replace(/hover:bg-\S+/g, '');
+
     const classes = cn(
-      'inline-flex items-center justify-center rounded-full font-medium transition-all duration-300 border focus:outline-none focus:ring-2 focus:ring-brand-cyan/50 disabled:opacity-50 disabled:cursor-not-allowed',
-      variants[variant],
+      'group relative inline-flex items-center justify-center rounded-full transition-all duration-[700ms] ease-out overflow-hidden hover:scale-[1.03]',
+      'hover:text-black focus:outline-none focus:ring-2 focus:ring-brand-primary/50 disabled:opacity-50 disabled:cursor-not-allowed z-10',
+      variants[variant || 'primary'],
       sizes[size],
-      className
+      cleanedClassName
+    );
+
+    const FillEffect = () => (
+      <span className="absolute inset-0 bg-brand-primary origin-left scale-x-0 transition-transform duration-[700ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-x-100 -z-10" />
+    );
+
+    const innerContent = (
+      <>
+        <FillEffect />
+        <span className="relative z-10 flex items-center justify-center gap-2">{children}</span>
+      </>
     );
 
     if (href) {
       return (
         <Link href={href} className={classes}>
-          {children}
+          {innerContent}
         </Link>
       );
     }
 
     return (
       <button ref={ref} className={classes} {...props}>
-        {children}
+        {innerContent}
       </button>
     );
   }

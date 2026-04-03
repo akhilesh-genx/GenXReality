@@ -7,11 +7,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
+import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
   { name: 'Home', href: '/' },
-  { name: 'Products', href: '/product' },
+  { name: 'Product', href: '/product' },
   { name: 'Services', href: '/services' },
   { name: 'News', href: '/news' },
 ];
@@ -104,7 +105,7 @@ export function Navbar() {
                 'text-sm font-medium transition-all duration-300 uppercase tracking-wide relative py-1',
                 isActive(link.href)
                   ? 'text-brand-primary'
-                  : 'text-white/70 hover:text-white'
+                  : 'text-white hover:text-white'
               )}
             >
               {link.name}
@@ -112,17 +113,9 @@ export function Navbar() {
           ))}
 
           {/* CTA — Contact Us */}
-          <Link
-            href="/contact"
-            className={cn(
-              'ml-2 px-5 py-2 text-sm font-bold uppercase tracking-wider rounded-full transition-all duration-300 border-2',
-              isActive('/contact')
-                ? 'bg-brand-primary text-black border-brand-primary shadow-[0_0_20px_rgba(0,255,65,0.4)]'
-                : 'bg-brand-primary/10 text-brand-primary border-brand-primary/50 hover:bg-brand-primary hover:text-black hover:shadow-[0_0_20px_rgba(0,255,65,0.3)]'
-            )}
-          >
+          <Button href="/contact" size="sm">
             Contact Us
-          </Link>
+          </Button>
         </nav>
 
         {/* Mobile Toggle */}
@@ -164,7 +157,7 @@ export function Navbar() {
                         'text-xl font-display font-bold transition-all duration-300 uppercase px-6 py-4 rounded-xl',
                         isActive(link.href)
                           ? 'bg-brand-primary/20 text-brand-primary border border-brand-primary/50 translate-x-2'
-                          : 'text-white/70 hover:text-white hover:bg-white/5 border border-transparent'
+                          : 'text-white hover:text-white hover:bg-white/5 border border-transparent'
                       )}
                     >
                       {link.name}
@@ -172,13 +165,11 @@ export function Navbar() {
                   ))}
                 </div>
                 <div className="mt-auto pt-8">
-                  <Link
-                    href="/contact"
-                    onClick={() => setIsOpen(false)}
-                    className="flex justify-center w-full py-4 text-lg font-bold uppercase bg-brand-primary text-black rounded-xl hover:shadow-[0_0_20px_rgba(0,255,65,0.4)] transition-all"
-                  >
-                    Contact Us
-                  </Link>
+                  <div className="flex justify-center w-full">
+                    <Button href="/contact" size="lg" onClick={() => setIsOpen(false)}>
+                      Contact Us
+                    </Button>
+                  </div>
                 </div>
               </motion.div>
             </>

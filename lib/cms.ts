@@ -58,20 +58,20 @@ export const articles: Article[] = [
 export const services: Service[] = [
   {
     id: '1',
-    title: 'VR Real Estate',
-    description: 'Photorealistic architectural visualization and walkthroughs for pre-construction sales.',
+    title: 'IMMERSIVE XR EXPERIENCES',
+    description: 'Design and deploy interactive XR experiences that enhance visualization, engagement, and decision-making across industries.',
     icon: 'Building',
   },
   {
     id: '2',
     title: 'XR App Development',
-    description: 'Custom spatial applications built for Aether, Vision Pro, and Quest ecosystems.',
+    description: 'Custom-built XR applications for Meta Quest, Apple Vision Pro, and cross-platform ecosystems tailored to your business needs.',
     icon: 'Code',
   },
   {
     id: '3',
-    title: 'Enterprise Training',
-    description: 'Risk-free simulation environments for heavy machinery and hazardous materials.',
+    title: 'XR TRAINING SOLUTIONS',
+    description: 'Simulation-based training environments that improve safety, reduce costs, and accelerate workforce learning.',
     icon: 'Briefcase',
   },
   {

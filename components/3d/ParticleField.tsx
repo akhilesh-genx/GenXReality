@@ -5,7 +5,7 @@ import { Sparkles } from '@react-three/drei';
 
 export function ParticleField() {
   return (
-    <div className="absolute inset-0 -z-10 h-full w-full bg-black">
+    <div className="absolute inset-0 -z-10 h-full w-full bg-transparent">
       <Canvas camera={{ position: [0, 0, 1] }}>
         <Sparkles 
           count={500} 
@@ -13,7 +13,7 @@ export function ParticleField() {
           size={2} 
           speed={0.4} 
           opacity={0.5} 
-          color="#00ff41"
+          color="#00ff1A"
         />
         <Sparkles 
           count={300} 
@@ -21,7 +21,7 @@ export function ParticleField() {
           size={3} 
           speed={0.2} 
           opacity={0.3} 
-          color="#008f11"
+          color="#00ff1A"
         />
       </Canvas>
     </div>

@@ -11,7 +11,7 @@ export default function ContactPage() {
   return (
     <div className="pt-24">
       {/* Banner Section */}
-      <div className="relative h-[40vh] w-full overflow-hidden mb-12">
+      <div className="relative z-[2] h-[40vh] w-full overflow-hidden mb-12">
         <Image
           src="https://picsum.photos/seed/vrcontact/1920/600"
           alt="Contact Us"
@@ -21,8 +21,8 @@ export default function ContactPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full p-8 md:p-16">
           <Container>
-            <h1 className="text-5xl md:text-7xl font-bold mb-4 uppercase tracking-tighter">Contact <span className="text-brand-primary">Us</span></h1>
-            <p className="text-xl text-white/80 max-w-2xl">
+            <h1 className="text-5xl md:text-7xl font-bold mb-4 uppercase tracking-tighter heading-gradient">Contact <span className="text-brand-primary">Us</span></h1>
+            <p className="text-xl text-white max-w-2xl">
               Ready to transform your reality? Let&apos;s build the future together.
             </p>
           </Container>
@@ -33,8 +33,8 @@ export default function ContactPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
-              <h2 className="text-4xl font-bold mb-8 uppercase">Get in Touch</h2>
-              <p className="text-xl text-white/60 mb-12">
+              <h2 className="text-4xl font-bold mb-8 uppercase heading-gradient">Get in Touch</h2>
+              <p className="text-xl text-white mb-12">
                 Whether you&apos;re interested in our VR headsets, enterprise solutions, or just want to say hello, we&apos;d love to hear from you.
               </p>
 
@@ -44,8 +44,8 @@ export default function ContactPage() {
                     <Mail className="text-brand-primary" />
                   </div>
                   <div>
-                    <h3 className="font-bold mb-1 uppercase tracking-wide">Email Us</h3>
-                    <p className="text-white/60">contact@genxreality.com</p>
+                    <h3 className="font-bold mb-1 uppercase tracking-wide heading-gradient">Email Us</h3>
+                    <p className="text-white">contact@genxreality.com</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -53,8 +53,8 @@ export default function ContactPage() {
                     <Phone className="text-brand-primary" />
                   </div>
                   <div>
-                    <h3 className="font-bold mb-1 uppercase tracking-wide">Call Us</h3>
-                    <p className="text-white/60">+91 7780788136</p>
+                    <h3 className="font-bold mb-1 uppercase tracking-wide heading-gradient">Call Us</h3>
+                    <p className="text-white">+91 7780788136</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -62,8 +62,8 @@ export default function ContactPage() {
                     <MapPin className="text-brand-primary" />
                   </div>
                   <div>
-                    <h3 className="font-bold mb-1 uppercase tracking-wide">Visit HQ</h3>
-                    <p className="text-white/60">
+                    <h3 className="font-bold mb-1 uppercase tracking-wide heading-gradient">Visit HQ</h3>
+                    <p className="text-white">
                       Telephone Colony, Chengicherla, Hyderabad,<br />
                       Telangana 500092, India
                     </p>
@@ -87,14 +87,14 @@ export default function ContactPage() {
 
             <div className="glass-panel p-6 md:p-10 rounded-3xl border-brand-primary/20 flex flex-col gap-10">
               <div className="w-full">
-                <h3 className="text-2xl font-bold mb-6 uppercase tracking-wide">Send a Message</h3>
+                <h3 className="text-2xl font-bold mb-6 uppercase tracking-wide heading-gradient">Send a Message</h3>
                 <div className="elfsight-app-442eee75-a698-48d4-a12d-f7e7508c2be5" data-elfsight-app-lazy></div>
                 <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
               </div>
 
               <div className="w-full border-t border-white/10 pt-8">
-                <h3 className="text-2xl font-bold mb-6 uppercase tracking-wide">Book a Consultation</h3>
-                <div className="w-full bg-black/40 rounded-2xl p-4 border border-white/5">
+                <h3 className="text-2xl font-bold mb-6 uppercase tracking-wide heading-gradient">Book a Consultation</h3>
+                <div className="w-full bg-transparent rounded-2xl p-4 border border-white/5">
                   {/* Elfsight Appointment Booking | Untitled Appointment Booking */}
                   <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
                   <div className="elfsight-app-df4f0fb5-7643-4ace-b1de-6544e4a8e337" data-elfsight-app-lazy></div>

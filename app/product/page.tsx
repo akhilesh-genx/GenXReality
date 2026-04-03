@@ -23,94 +23,32 @@ export default function ProductPage() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    const canvas = canvasRef.current;
-    if (!video || !canvas) return;
-
-    let animationFrameId: number;
-    const ctx = canvas.getContext('2d');
-
-    const draw = () => {
-      if (ctx && video.readyState >= 2) {
-        const canvasRatio = canvas.width / canvas.height;
-        const videoRatio = video.videoWidth / video.videoHeight;
-        
-        let drawWidth, drawHeight, startX, startY;
-        
-        if (canvasRatio > videoRatio) {
-          drawWidth = canvas.width;
-          drawHeight = canvas.width / videoRatio;
-          startX = 0;
-          startY = (canvas.height - drawHeight) / 2;
-        } else {
-          drawWidth = canvas.height * videoRatio;
-          drawHeight = canvas.height;
-          startX = (canvas.width - drawWidth) / 2;
-          startY = 0;
-        }
-        
-        // Draw the raw video frame
-        ctx.drawImage(video, startX, startY, drawWidth, drawHeight);
-        
-        // Process pixels to remove the green screen background (Chroma key)
-        try {
-          const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
-          const data = frame.data;
-          const length = data.length;
-          
-          for (let i = 0; i < length; i += 4) {
-            const r = data[i + 0];
-            const g = data[i + 1];
-            const b = data[i + 2];
-            
-            // Detect bright green pixels and set their alpha channel to 0
-            if (g > 80 && g > r * 1.2 && g > b * 1.2) {
-              data[i + 3] = 0; 
-            }
-          }
-          ctx.putImageData(frame, 0, 0);
-        } catch(err) {
-          // Ignore canvas taint errors if local dev doesn't serve with open CORS
-        }
-      }
-      animationFrameId = requestAnimationFrame(draw);
-    };
-
-    const handleResize = () => {
-      const dpr = window.devicePixelRatio || 1;
-      const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-    };
-
-    window.addEventListener('resize', handleResize);
-    handleResize();
-    
-    video.play().catch(e => console.log("Auto-play blocked", e));
-    draw();
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.feature-card', {
-        scrollTrigger: {
-          trigger: '#features',
-          start: 'top 80%',
-          toggleActions: 'play none none reverse'
-        },
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
+      gsap.utils.toArray('section:not(:first-child)').forEach((sec: any) => {
+        const texts = sec.querySelectorAll('h2, h3, p, li');
+        if (texts.length) {
+          gsap.from(texts, {
+            scrollTrigger: { trigger: sec, start: 'top 80%', toggleActions: 'play none none reverse' },
+            x: -50, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out',
+          });
+        }
+
+        const cards = sec.querySelectorAll('.feature-card, .glass-card');
+        if (cards.length) {
+          gsap.from(cards, {
+            scrollTrigger: { trigger: sec, start: 'top 75%', toggleActions: 'play none none reverse' },
+            x: -30, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out',
+          });
+        }
+
+        const images = sec.querySelectorAll('img');
+        if (images.length) {
+          gsap.from(images, {
+            scrollTrigger: { trigger: sec, start: 'top 70%', toggleActions: 'play none none reverse' },
+            scale: 0.8, opacity: 0, duration: 1, ease: 'power3.out',
+          });
+        }
       });
     });
     return () => ctx.revert();
@@ -119,63 +57,55 @@ export default function ProductPage() {
   return (
     <div className="w-full">
       {/* Hero */}
-      <section 
-        ref={heroRef} 
-        className="relative h-screen flex items-center justify-center overflow-hidden select-none"
+      <section
+        ref={heroRef}
+        className="relative z-[2] h-screen flex items-center justify-center overflow-hidden select-none bg-black"
         onContextMenu={(e) => e.preventDefault()}
         onDragStart={(e) => e.preventDefault()}
       >
-        <motion.div style={{ y, opacity }} className="relative z-10 text-center max-w-4xl px-4">
+        <motion.div style={{ y, opacity }} className="relative z-10 w-full h-full flex flex-col items-center justify-center">
+
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="mb-8"
+            className="absolute top-20 left-0 w-full text-center px-4"
           >
-            <h1 className="text-6xl md:text-9xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40 uppercase">
-              GENX ONE
+            <h1 className="text-[clamp(2.5rem,10vw,8rem)] font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40 heading-gradient">
+              GenXEdu
             </h1>
-            <p className="text-xl md:text-2xl text-brand-primary font-mono mt-4 uppercase tracking-widest">
+            <p className="text-[clamp(1rem,3vw,1.5rem)] leading-snug text-brand-primary font-mono -mt-5 uppercase tracking-widest">
               Enterprise-Grade, High-Performance VR
             </p>
           </motion.div>
 
-          <div className="flex justify-center gap-4">
-            <Link href="/contact">
-              <Button size="lg" className="bg-brand-primary text-black hover:bg-brand-secondary font-bold uppercase tracking-wider">
-                Pre-order Now
-              </Button>
-            </Link>
-          </div>
+
         </motion.div>
 
-        {/* Background Canvas Video */}
-        <div className="absolute inset-0 -z-10 bg-black">
-          <video 
-            ref={videoRef}
-            src="/plots.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            className="hidden"
+        {/* Background Image */}
+        <div className="absolute inset-0 -z-10 bg-transparent flex items-center justify-center">
+          <Image
+            src="/VR-Images/blurred-vr.webp"
+            alt="GenX One Background"
+            fill
+            className="object-contain scale-[0.9] opacity-60 blur-[3px] pointer-events-none"
+            priority
+            style={{
+              maskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)',
+            }}
           />
-          <canvas 
-            ref={canvasRef}
-            className="w-full h-full opacity-60 pointer-events-none"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/80 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/80 pointer-events-none z-[1]" />
         </div>
       </section>
 
       {/* Product Vision */}
-      <Section id="product" className="bg-zinc-900/30">
+      <Section id="product" className="bg-transparent">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-4xl md:text-6xl font-bold mb-6 uppercase">Innovations & <br /><span className="text-brand-primary">Showcase.</span></h2>
-              <p className="text-lg text-white/70 mb-6 font-light leading-relaxed">
+              <h2 className="text-[clamp(1.8rem,5vw,4rem)] leading-tight font-bold mb-6 uppercase heading-gradient">Innovations & <br /><span className="text-brand-primary">Showcase.</span></h2>
+              <p className="text-lg text-white mb-6 font-light leading-relaxed">
                 We believe that advanced display technology should push the absolute limits of enterprise capability.
                 GenX One offers a truly zero-compromise immersive experience. We are redefining what is possible in premium VR hardware, delivering unprecedented clarity for professionals.
               </p>
@@ -194,13 +124,8 @@ export default function ProductPage() {
                 </li>
               </ul>
             </div>
-            <div className="relative aspect-square rounded-2xl overflow-hidden glass-panel border-brand-primary/20 bg-black">
-              <Image
-                src="https://picsum.photos/seed/vrtech/800/800"
-                alt="Technology"
-                fill
-                className="object-cover hover:scale-105 transition-transform duration-700"
-              />
+            <div className="relative aspect-square w-[85%] mx-auto rounded-2xl overflow-hidden">
+              <Image src="/VR-Images/v3-4-c.png" alt="Technology" fill className="object-contain" />
             </div>
           </div>
         </Container>
@@ -210,8 +135,8 @@ export default function ProductPage() {
       <Section id="features">
         <Container>
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 uppercase">Technical Specifications</h2>
-            <p className="text-white/60">Engineered for absolute performance without compromise.</p>
+            <h2 className="text-[clamp(2rem,4vw,2.5rem)] font-bold mb-4 uppercase heading-gradient">Technical Specifications</h2>
+            <p className="text-white">Engineered for absolute performance without compromise.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -262,9 +187,9 @@ function FeatureCard({ icon, title, value, description }: { icon: React.ReactNod
   return (
     <div className="feature-card glass-card p-8 rounded-2xl border-brand-primary/10 hover:border-brand-primary/50">
       <div className="mb-4">{icon}</div>
-      <h3 className="text-white/60 text-sm uppercase tracking-wider mb-1">{title}</h3>
+      <h3 className="text-white text-sm uppercase tracking-wider mb-1 heading-gradient">{title}</h3>
       <div className="text-2xl font-bold mb-2">{value}</div>
-      <p className="text-white/50 text-sm">{description}</p>
+      <p className="text-white text-sm">{description}</p>
     </div>
   );
 }

@@ -4,15 +4,15 @@ import { Mail, Linkedin, Instagram } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-black border-t border-white/10 py-20">
+    <footer className="relative z-10 bg-transparent border-t border-white/10 py-20">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
             <Link href="/" className="text-2xl font-display font-bold tracking-tighter mb-6 block text-brand-primary">
               GenXReality
             </Link>
-            <p className="text-white/60 max-w-sm mb-8">
-              Building the next generation of spatial computing hardware and software ecosystems for enterprise and consumers.
+            <p className="text-white max-w-sm mb-8">
+              Building practical XR solutions for real-world business impact.
             </p>
             <div className="flex gap-4">
               <SocialLink href="mailto:hello@genxreality.com" icon={<Mail size={20} />} />
@@ -36,13 +36,12 @@ export function Footer() {
             <ul className="space-y-4">
               <FooterLink href="/#about">About Us</FooterLink>
               <FooterLink href="/news">News</FooterLink>
-
               <FooterLink href="/contact">Contact</FooterLink>
             </ul>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40">
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white">
           <p>&copy; {new Date().getFullYear()} GenXReality Inc. All rights reserved.</p>
           <div className="flex gap-8">
             <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
@@ -60,7 +59,7 @@ function SocialLink({ href, icon }: { href: string; icon: React.ReactNode }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:bg-white hover:text-black transition-all duration-300"
+      className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
     >
       {icon}
     </a>
@@ -70,7 +69,7 @@ function SocialLink({ href, icon }: { href: string; icon: React.ReactNode }) {
 function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <li>
-      <Link href={href} className="text-white/60 hover:text-brand-cyan transition-colors">
+      <Link href={href} className="text-white hover:text-brand-cyan transition-colors">
         {children}
       </Link>
     </li>
