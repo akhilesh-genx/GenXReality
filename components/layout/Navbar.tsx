@@ -71,11 +71,17 @@ export function Navbar() {
     return pathname === href;
   };
 
+  // Glass style for individual elements when scrolled
+  const glassStyle = scrolled
+    ? 'bg-black/40 backdrop-blur-md border border-white/10'
+    : 'bg-transparent border border-transparent';
+
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-[padding] duration-300',
-        scrolled ? 'bg-gradient-to-b from-black/80 to-transparent py-4' : 'bg-transparent py-6'
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        scrolled ? 'py-4' : 'py-6',
+        'bg-transparent'
       )}
       style={{
         opacity: isHomePage ? navOpacity : 1,
@@ -83,7 +89,14 @@ export function Navbar() {
       }}
     >
       <Container size="xl" className="flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 md:gap-3 text-2xl font-display font-bold tracking-tighter z-50 relative group">
+        <Link
+          href="/"
+          className={cn(
+            'flex items-center gap-2 md:gap-3 text-2xl font-display font-bold tracking-tighter z-50 relative group',
+            'rounded-full px-3 py-0.5 transition-all duration-300',
+            glassStyle
+          )}
+        >
           <div className="relative w-12 h-12 md:w-14 md:h-14">
             <Image
               src="/logo.png"
@@ -96,16 +109,21 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav
+          className={cn(
+            'hidden md:flex items-center gap-1.5 rounded-full px-2 py-1.5 transition-all duration-300',
+            glassStyle
+          )}
+        >
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
               className={cn(
-                'text-sm font-medium transition-all duration-300 uppercase tracking-wide relative py-1',
+                'text-sm font-medium transition-all duration-300 uppercase tracking-wide relative py-1.5 px-4 rounded-full',
                 isActive(link.href)
                   ? 'text-brand-primary'
-                  : 'text-white hover:text-white'
+                  : 'text-white hover:text-white hover:bg-white/5'
               )}
             >
               {link.name}

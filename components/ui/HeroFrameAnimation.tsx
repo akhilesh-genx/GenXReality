@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLenis } from 'lenis/react';
@@ -210,7 +209,7 @@ export default function HeroFrameAnimation() {
                 textOverlay.style.opacity = '0';
 
                 blurOverlay.style.backdropFilter = 'blur(4px)';
-                (blurOverlay.style as any).webkitBackdropFilter = 'blur(4px)';
+                blurOverlay.style.setProperty('-webkit-backdrop-filter', 'blur(4px)');
                 blurOverlay.style.opacity = '1';
 
                 // ────────────────────────────────────────────────
@@ -237,17 +236,17 @@ export default function HeroFrameAnimation() {
 
                 if (frameIndex <= BLUR_START) {
                     blurOverlay.style.backdropFilter = 'blur(4px)';
-                    (blurOverlay.style as any).webkitBackdropFilter = 'blur(4px)';
+                    blurOverlay.style.setProperty('-webkit-backdrop-filter', 'blur(4px)');
                     blurOverlay.style.opacity = '1';
                 } else if (frameIndex < BLUR_END) {
                     const pFade = (frameIndex - BLUR_START) / (BLUR_END - BLUR_START);
                     const blurVal = 4 * (1 - pFade);
                     blurOverlay.style.backdropFilter = `blur(${blurVal}px)`;
-                    (blurOverlay.style as any).webkitBackdropFilter = `blur(${blurVal}px)`;
+                    blurOverlay.style.setProperty('-webkit-backdrop-filter', `blur(${blurVal}px)`);
                     blurOverlay.style.opacity = `${1 - pFade}`;
                 } else {
                     blurOverlay.style.backdropFilter = 'blur(0px)';
-                    (blurOverlay.style as any).webkitBackdropFilter = 'blur(0px)';
+                    blurOverlay.style.setProperty('-webkit-backdrop-filter', 'blur(0px)');
                     blurOverlay.style.opacity = '0';
                 }
 
@@ -278,7 +277,7 @@ export default function HeroFrameAnimation() {
                 }
 
                 blurOverlay.style.backdropFilter = 'blur(0px)';
-                (blurOverlay.style as any).webkitBackdropFilter = 'blur(0px)';
+                blurOverlay.style.setProperty('-webkit-backdrop-filter', 'blur(0px)');
                 blurOverlay.style.opacity = '0';
             }
         };
@@ -345,7 +344,7 @@ export default function HeroFrameAnimation() {
             {/* Sticky viewport */}
             <div
                 ref={stickyRef}
-                className="sticky top-0 w-full h-screen overflow-hidden bg-transparent"
+                className="sticky top-0 w-full h-screen overflow-hidden bg-black"
                 style={{ zIndex: 20 }}
                 onMouseMove={handleMouseMove}
             >
@@ -367,15 +366,7 @@ export default function HeroFrameAnimation() {
                             style={{ background: 'transparent' }}
                         />
 
-                        {/* Holographic light sweep across the headset surface */}
-                        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.15]">
-                            <div
-                                className="absolute top-0 left-0 w-[25%] h-full hero-holo-sweep"
-                                style={{
-                                    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
-                                }}
-                            />
-                        </div>
+                        {/* Removed Holographic light sweep */}
                     </div>
                 </div>
 
@@ -385,8 +376,7 @@ export default function HeroFrameAnimation() {
                     className="absolute inset-0 z-10"
                     style={{
                         backdropFilter: 'blur(4px)',
-                        WebkitBackdropFilter: 'blur(4px)',
-                        background: 'rgba(0,0,0,0.3)',
+                        backgroundColor: 'rgba(0,0,0,0.3)',
                     }}
                 />
 
@@ -396,7 +386,7 @@ export default function HeroFrameAnimation() {
                     className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 opacity-0"
                 >
                     <div className="text-center w-full max-w-7xl mx-auto overflow-visible">
-                        <h1 className="inline-block pr-6 pl-2 py-4 text-[clamp(1.8rem,8vw,6rem)] font-bold tracking-tighter leading-tight text-brand-primary heading-gradient">
+                        <h1 className="inline-block py-4 text-[clamp(3.5rem,10vw,6rem)] font-bold tracking-tighter leading-tight text-brand-primary heading-gradient">
                             GenXReality
                         </h1>
                         <TypewriterText text="Beyond Boundaries" startTyping={loadStage >= 1} />
@@ -414,9 +404,9 @@ export default function HeroFrameAnimation() {
                         className="absolute rounded-full"
                         style={{
                             width: 'min(350px, 80vw)', height: 'min(350px, 80vw)',
-                            background: 'radial-gradient(circle, rgba(0,255,26,0.06) 0%, transparent 70%)',
+                            backgroundColor: 'rgba(0,255,26,0.03)',
                             top: '15%', left: '10%',
-                            filter: 'blur(40px)',
+                            filter: 'blur(60px)',
                             animation: 'heroFloat 10s ease-in-out infinite',
                         }}
                     />
@@ -424,9 +414,9 @@ export default function HeroFrameAnimation() {
                         className="absolute rounded-full"
                         style={{
                             width: 'min(250px, 60vw)', height: 'min(250px, 60vw)',
-                            background: 'radial-gradient(circle, rgba(0,255,26,0.05) 0%, transparent 70%)',
+                            backgroundColor: 'rgba(0,255,26,0.02)',
                             bottom: '20%', right: '15%',
-                            filter: 'blur(35px)',
+                            filter: 'blur(50px)',
                             animation: 'heroFloat 8s ease-in-out infinite',
                             animationDelay: '2s',
                         }}
@@ -442,17 +432,7 @@ export default function HeroFrameAnimation() {
                     {/* Base dark background */}
                     <div className="absolute inset-0 bg-black/95" />
 
-                    {/* Subtle grid pattern */}
-                    <div
-                        className="absolute inset-0"
-                        style={{
-                            backgroundImage: `
-                                linear-gradient(rgba(0,255,26,0.03) 1px, transparent 1px),
-                                linear-gradient(90deg, rgba(0,255,26,0.03) 1px, transparent 1px)
-                            `,
-                            backgroundSize: '60px 60px',
-                        }}
-                    />
+                    {/* Removed grid pattern */}
 
                     {/* Floating glowing orbs */}
                     <div className="absolute inset-0 overflow-hidden">
@@ -460,40 +440,37 @@ export default function HeroFrameAnimation() {
                             className="absolute rounded-full"
                             style={{
                                 width: 'min(400px, 80vw)', height: 'min(400px, 80vw)',
-                                background: 'radial-gradient(circle, rgba(0,255,26,0.3) 0%, rgba(0,255,26,0.1) 40%, transparent 70%)',
+                                backgroundColor: 'rgba(0,255,26,0.08)',
                                 top: '10%', left: '15%',
+                                filter: 'blur(80px)',
                                 animation: 'floatOrb1 12s ease-in-out infinite',
-                                boxShadow: '0 0 40px rgba(0,255,26,0.1)',
+                                boxShadow: '0 0 40px rgba(0,255,26,0.05)',
                             }}
                         />
                         <div
                             className="absolute rounded-full"
                             style={{
                                 width: 'min(300px, 70vw)', height: 'min(300px, 70vw)',
-                                background: 'radial-gradient(circle, rgba(0,204,21,0.3) 0%, rgba(0,204,21,0.1) 40%, transparent 70%)',
+                                backgroundColor: 'rgba(0,204,21,0.08)',
                                 bottom: '15%', right: '10%',
+                                filter: 'blur(70px)',
                                 animation: 'floatOrb2 10s ease-in-out infinite',
-                                boxShadow: '0 0 50px rgba(0,204,21,0.15)',
+                                boxShadow: '0 0 50px rgba(0,204,21,0.05)',
                             }}
                         />
                         <div
                             className="absolute rounded-full"
                             style={{
                                 width: 'min(200px, 50vw)', height: 'min(200px, 50vw)',
-                                background: 'radial-gradient(circle, rgba(0,255,26,0.1) 0%, transparent 60%)',
+                                backgroundColor: 'rgba(0,255,26,0.04)',
+                                filter: 'blur(50px)',
                                 top: '50%', left: '60%',
                                 animation: 'floatOrb3 8s ease-in-out infinite',
                             }}
                         />
                     </div>
 
-                    {/* Vignette effect */}
-                    <div
-                        className="absolute inset-0"
-                        style={{
-                            background: 'radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.6) 100%)',
-                        }}
-                    />
+                    {/* Removed vignette effect */}
 
                     {/* CSS Keyframes for phase 3 orbs */}
                     <style>{`

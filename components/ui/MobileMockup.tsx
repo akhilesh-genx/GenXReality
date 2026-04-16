@@ -23,8 +23,7 @@ export function MobileMockup({ children, imageUrl, className = '' }: MobileMocku
         )}
         {children}
 
-        {/* Screen ambient gloss overlay */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-white/[0.02] via-transparent to-white/[0.1] pointer-events-none z-50 mix-blend-screen" />
+        {/* Removed screen ambient gloss overlay */}
         <div className="absolute inset-0 shadow-[inset_0_0_15px_rgba(0,0,0,0.8)] pointer-events-none z-50" />
       </div>
     </div>

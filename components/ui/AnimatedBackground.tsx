@@ -74,6 +74,7 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ className }) =>
   const mouseRef     = useRef({ x: -9999, y: -9999, prevX: -9999, prevY: -9999, speed: 0 });
   const rafRef       = useRef<number>(0);
   const timeRef      = useRef(0);
+  const isMobileRef  = useRef(false);
   
   const pathname     = usePathname();
   const [isVisible, setIsVisible] = useState(false);
@@ -134,16 +135,21 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ className }) =>
 
     // ── Physics update ──────────────────────────────────────────────────
     for (const p of ps) {
-      const dx   = m.x - p.x;
-      const dy   = m.y - p.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
+      // Only apply cursor attraction on desktop (not mobile/tablet)
+      if (!isMobileRef.current) {
+        const dx   = m.x - p.x;
+        const dy   = m.y - p.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
 
-      if (dist < ATTRACT_RADIUS && m.x > -1000) {
-        const proximity   = 1 - dist / ATTRACT_RADIUS;
-        p.glowIntensity = Math.min(1, p.glowIntensity + 0.1 * proximity);
+        if (dist < ATTRACT_RADIUS && m.x > -1000) {
+          const proximity   = 1 - dist / ATTRACT_RADIUS;
+          p.glowIntensity = Math.min(1, p.glowIntensity + 0.1 * proximity);
+        } else {
+          p.glowIntensity = Math.max(0, p.glowIntensity - 0.035);
+        }
       } else {
-        // Ease glow back out
-        p.glowIntensity = Math.max(0, p.glowIntensity - 0.035);
+        // On mobile: no glow, particles just drift freely
+        p.glowIntensity = 0;
       }
 
       // Damping + spring-return to natural drift velocity
@@ -191,16 +197,12 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ className }) =>
 
     // ── Draw particles ───────────────────────────────────────────────────
     for (const p of ps) {
-      // Outer glow halo — only computed when cursor is near (perf optimisation)
+      // Outer glow halo — simple solid circle with alpha (no gradient)
       if (p.glowIntensity > 0.04) {
-        const haloR  = p.size * (3.5 + p.glowIntensity * 5);
-        const halo   = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, haloR);
-        halo.addColorStop(0,   `rgba(${NEON}, ${(p.glowIntensity * 0.45).toFixed(3)})`);
-        halo.addColorStop(0.5, `rgba(${NEON}, ${(p.glowIntensity * 0.15).toFixed(3)})`);
-        halo.addColorStop(1,   `rgba(${NEON}, 0)`);
+        const haloR = p.size * (3 + p.glowIntensity * 4);
         ctx.beginPath();
         ctx.arc(p.x, p.y, haloR, 0, Math.PI * 2);
-        ctx.fillStyle = halo;
+        ctx.fillStyle = `rgba(${NEON}, ${(p.glowIntensity * 0.12).toFixed(3)})`;
         ctx.fill();
       }
 
@@ -217,9 +219,14 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ className }) =>
 
   // ── Lifecycle ────────────────────────────────────────────────────────────
   useEffect(() => {
+    // Detect mobile/tablet (< 1024px)
+    const checkMobile = () => { isMobileRef.current = window.innerWidth < 1024; };
+    checkMobile();
+
     initCanvas();
 
     const onMove = (e: MouseEvent) => {
+      if (isMobileRef.current) return; // no cursor tracking on mobile
       mouseRef.current.x = e.clientX;
       mouseRef.current.y = e.clientY;
     };
@@ -228,6 +235,12 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ className }) =>
       mouseRef.current.y = -9999;
     };
     const onResize = () => {
+      checkMobile();
+      // Reset mouse on mobile so particles aren't stuck attracted
+      if (isMobileRef.current) {
+        mouseRef.current.x = -9999;
+        mouseRef.current.y = -9999;
+      }
       cancelAnimationFrame(rafRef.current);
       initCanvas();
       rafRef.current = requestAnimationFrame(draw);

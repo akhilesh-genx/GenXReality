@@ -136,23 +136,73 @@ export default function Home() {
       </Section>
 
       {/* ═══════════════════════════════════════════════════════════ */}
+      {/* FOUNDER */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <Section id="founder">
+        <Container>
+          <div className="max-w-6xl mx-auto px-4 md:px-0">
+            {/* Section Label */}
+            <div className="mb-12 md:mb-16">
+              <h2 className="text-[clamp(1.8rem,5vw,4rem)] font-bold uppercase heading-gradient">Founder</h2>
+            </div>
+
+            {/* Two-column layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              {/* Left — Portrait */}
+              <div className="flex justify-center lg:justify-start">
+                <div className="relative w-full max-w-[360px] md:max-w-[450px] lg:max-w-[550px] h-[350px] md:h-[400px] rounded-2xl overflow-hidden border border-white/10 group transition-all duration-500 hover:border-brand-primary/40">
+                  {/* Subtle glow on hover */}
+                  <div className="absolute -inset-1 rounded-2xl bg-brand-primary/0 group-hover:bg-brand-primary/10 blur-xl transition-all duration-700 z-0" />
+                  <Image
+                    src="/founder.jpeg"
+                    alt="Krishna Vamshi — Founder & CEO, GenXReality"
+                    fill
+                    className="object-cover z-10 group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                  />
+                  {/* Removed bottom vignette */}
+                </div>
+              </div>
+
+              {/* Right — Text Content */}
+              <div className="lg:col-span-1">
+                <h3 className="text-3xl md:text-4xl font-bold mb-1 text-white" style={{ WebkitTextFillColor: 'white', background: 'none', backgroundClip: 'unset', WebkitBackgroundClip: 'unset' }}>
+                  Krishna Vamshi
+                </h3>
+                <p className="text-sm md:text-base text-white/50 uppercase tracking-wider mb-8 font-medium">
+                  Founder &amp; CEO, GenXReality
+                </p>
+
+                <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-8 font-light">
+                  Krishna Vamshi brings experience in hardware development, AI, and product design, with a focus on XR technologies. His work is centered on building efficient and scalable systems that can be used across different industries.
+                </p>
+
+                {/* Quote */}
+                <div className="relative pl-6 border-l-2 border-brand-primary/40">
+                  <p className="text-base md:text-lg text-white/50 italic leading-relaxed">
+                    &ldquo;We focus on building practical XR solutions that can be used in real-world applications.&rdquo;
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* ═══════════════════════════════════════════════════════════ */}
       {/* PRODUCT — GenX One */}
       {/* ═══════════════════════════════════════════════════════════ */}
       <Section id="product">
         <Container>
-
-
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center px-4 md:px-0">
             <div>
               <h3 className="text-3xl md:text-5xl font-bold mb-6 uppercase heading-gradient">Innovations & <br /><span className="text-brand-primary">Showcase.</span></h3>
               <p className="text-lg text-white mb-8 font-light leading-relaxed">
-                GenXEdu is a high-performance PC-powered VR system under development, focused on delivering scalable, low-latency immersive environments for education, training, and enterprise applications—designed and built in India.
+                GenXReality is a high-performance PC-powered VR system under development, focused on delivering scalable, low-latency immersive environments for education, training, and enterprise applications—designed and built in India.
 
               </p>
               <Link href="/product">
                 <Button variant="outline" className="border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-black uppercase tracking-wider flex items-center gap-2">
-                  Explore GenXEdu <ArrowRight className="w-4 h-4" />
+                  Explore GenXReality <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
             </div>
@@ -168,8 +218,8 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════ */}
       <Section id="services">
         <Container>
-
-          <div className="max-w-3xl mb-16">
+          <div className="px-4 md:px-0">
+            <div className="max-w-3xl mb-16">
             <h2 className="text-[clamp(1.8rem,5vw,4rem)] font-bold mb-6 uppercase heading-gradient">Enterprise <span className="text-brand-primary">XR Solutions</span></h2>
             <p className="text-xl text-white">
               We help forward-thinking companies integrate immersive XR technologies into their workflows to improve efficiency, training, and digital experiences.
@@ -196,6 +246,7 @@ export default function Home() {
               </Button>
             </Link>
           </div>
+          </div>
         </Container>
       </Section>
 
@@ -204,7 +255,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════ */}
       <Section id="how-it-works">
         <Container>
-          <div className="flex flex-col md:flex-row items-center gap-12">
+          <div className="flex flex-col md:flex-row items-center gap-12 px-4 md:px-0">
             <div className="flex-1 how-it-works-text">
               <h2 className="text-3xl md:text-5xl font-bold mb-6 heading-gradient">How It Works</h2>
               <div className="space-y-8">
@@ -238,7 +289,7 @@ export default function Home() {
               </div>
             </div>
             <div className="how-it-works-img flex-1 relative h-[400px] w-full rounded-2xl overflow-hidden border border-white/10 group bg-black/40 backdrop-blur-md">
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/20 to-brand-primary/10 z-0 opacity-50 group-hover:opacity-30 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-brand-primary/10 z-0 opacity-50 group-hover:opacity-30 transition-opacity duration-500" />
               <Image
                 src="/how-it-works.webp"
                 alt="GenX One VR Headset Preview"
@@ -255,7 +306,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════ */}
       <Section id="news">
         <Container>
-          <div id="blogs" className="text-center">
+          <div id="blogs" className="text-center px-4 md:px-0">
             <div className="max-w-4xl mx-auto text-center mb-16">
               <h2 className="text-[clamp(1.8rem,5vw,4rem)] font-bold mb-6 uppercase heading-gradient">Recent <span className="text-brand-primary">Posts</span></h2>
               <p className="text-lg text-white font-light leading-relaxed">
@@ -264,7 +315,7 @@ export default function Home() {
             </div>
 
             <div className="w-full glass-card p-4 md:p-8 rounded-3xl border border-white/10 overflow-hidden min-h-[500px] mb-8 relative text-left">
-              <div className="absolute inset-0 bg-gradient-to-b from-brand-primary/5 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-transparent pointer-events-none" />
               <div className="elfsight-app-b6304e32-de05-494e-8860-97a1974ef9f5 relative z-10" data-elfsight-app-lazy></div>
               <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
             </div>

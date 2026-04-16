@@ -16,7 +16,7 @@ export default function AboutPage() {
           fill
           className="object-cover opacity-60"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-black/40" />
         <div className="absolute bottom-0 left-0 w-full p-8 md:p-16">
           <Container>
             <h1 className="text-5xl md:text-7xl font-bold mb-4 tracking-tighter heading-gradient">ABOUT <span className="text-brand-primary">GenXReality</span></h1>

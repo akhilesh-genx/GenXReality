@@ -138,14 +138,6 @@ export default function VirtualToursPage() {
       {/* Hero Section */}
       <section ref={heroRef} className="relative h-[90vh] flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 z-0 bg-black">
-          <Image
-            src="/VR-Images/blurred-vr.webp"
-            alt="3D Virtual Tours Architecture"
-            fill
-            className="hero-bg object-cover opacity-50"
-            priority
-          />
-          
           {/* Transparent Video Layer (Chroma Key) */}
           <video
             ref={videoRef}
@@ -160,7 +152,7 @@ export default function VirtualToursPage() {
             className="absolute inset-0 w-full h-full object-cover z-10 opacity-80"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none z-20" />
+        <div className="absolute inset-0 bg-black/50 pointer-events-none z-20" />
         <Container className="relative z-10">
           <div className="max-w-4xl">
             <h1 className="text-[clamp(2rem,8vw,6rem)] font-bold mb-6 uppercase tracking-tighter leading-tight heading-gradient">
@@ -237,7 +229,7 @@ export default function VirtualToursPage() {
                 {/* Phone 2 - Main */}
                 <div className="transform z-20 scale-110 shadow-[0_0_50px_rgba(0,255,26,0.2)] ring-1 ring-brand-primary/30 rounded-[3rem]">
                   <MobileMockup imageUrl="https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?auto=format&fit=crop&w=600&h=1200&q=80">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 flex flex-col justify-end p-6">
+                    <div className="absolute inset-0 bg-black/60 flex flex-col justify-end p-6">
                       <div className="flex justify-center gap-4">
                         <div className="w-8 h-8 rounded-full bg-brand-primary/20 backdrop-blur flex items-center justify-center border border-brand-primary/50"><Sparkles className="w-4 h-4 text-brand-primary" /></div>
                       </div>

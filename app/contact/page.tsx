@@ -4,29 +4,19 @@ import { Container } from '@/components/ui/Container';
 import { Section } from '@/components/ui/Section';
 import { Button } from '@/components/ui/Button';
 import { Mail, MapPin, Phone } from 'lucide-react';
-import Image from 'next/image';
 import Script from 'next/script';
 
 export default function ContactPage() {
   return (
     <div className="pt-24">
       {/* Banner Section */}
-      <div className="relative z-[2] h-[40vh] w-full overflow-hidden mb-12">
-        <Image
-          src="https://picsum.photos/seed/vrcontact/1920/600"
-          alt="Contact Us"
-          fill
-          className="object-cover opacity-60"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full p-8 md:p-16">
-          <Container>
-            <h1 className="text-5xl md:text-7xl font-bold mb-4 uppercase tracking-tighter heading-gradient">Contact <span className="text-brand-primary">Us</span></h1>
-            <p className="text-xl text-white max-w-2xl">
-              Ready to transform your reality? Let&apos;s build the future together.
-            </p>
-          </Container>
-        </div>
+      <div className="relative z-[2] w-full mb-4">
+        <Container>
+          <h1 className="text-5xl md:text-7xl font-bold mb-3 uppercase tracking-normal heading-gradient">Contact <span className="text-brand-primary">Us</span></h1>
+          <p className="text-xl text-white max-w-2xl">
+            Ready to transform your reality? Let&apos;s build the future together.
+          </p>
+        </Container>
       </div>
 
       <Section>
@@ -48,15 +38,8 @@ export default function ContactPage() {
                     <p className="text-white">contact@genxreality.com</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-brand-primary/10 rounded-lg border border-brand-primary/20">
-                    <Phone className="text-brand-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold mb-1 uppercase tracking-wide heading-gradient">Call Us</h3>
-                    <p className="text-white">+91 7780788136</p>
-                  </div>
-                </div>
+                {/* Removed Call Us */}
+
                 <div className="flex items-start gap-4">
                   <div className="p-3 bg-brand-primary/10 rounded-lg border border-brand-primary/20">
                     <MapPin className="text-brand-primary" />

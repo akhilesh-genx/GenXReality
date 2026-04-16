@@ -26,10 +26,10 @@ export function ServiceCard({ title, description, icon, imageUrl, delay = 0 }: S
         hover:-translate-y-2 hover:border-brand-primary/40 hover:shadow-[0_20px_50px_-15px_rgba(0,255,65,0.25)]
       `}
     >
-      {/* Loading Skeleton / Shimmer Effect */}
+      {/* Loading Skeleton / Solid Shimmer */}
       {!isLoaded && (
         <div className="absolute inset-0 z-30 bg-zinc-900 overflow-hidden">
-          <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+          <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-white/5" />
         </div>
       )}
 
@@ -39,9 +39,9 @@ export function ServiceCard({ title, description, icon, imageUrl, delay = 0 }: S
         style={{ backgroundImage: `url(${imageUrl})` }}
       />
 
-      {/* Deep Gradient Overlays for readability and depth */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent transition-opacity duration-[800ms] group-hover:opacity-90" />
-      <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/0 via-transparent to-brand-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-[1s]" />
+      {/* Solid Overlays for readability and depth */}
+      <div className="absolute inset-0 bg-black/40 transition-opacity duration-[800ms] group-hover:opacity-60" />
+      <div className="absolute inset-0 bg-brand-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-[1s]" />
 
       {/* Interactive Content */}
       <div className="relative z-10 p-8 h-full flex flex-col justify-between">

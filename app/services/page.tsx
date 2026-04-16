@@ -40,16 +40,8 @@ export default function ServicesPage() {
         ref={heroRef}
         className="relative h-[80vh] flex items-center justify-center overflow-hidden"
       >
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/VR-Images/blurred-vr.webp"
-            alt="Enterprise Services"
-            fill
-            className="hero-banner-image object-cover opacity-60 pointer-events-none"
-            priority
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+        <div className="absolute inset-0 z-0 bg-black" />
+        <div className="absolute inset-0 bg-black/40" />
         <Container className="relative z-10 w-full">
           <div className="max-w-4xl pt-20">
             <h1 className="text-[clamp(2.2rem,8vw,6rem)] font-bold mb-6 uppercase tracking-tighter leading-tight heading-gradient">

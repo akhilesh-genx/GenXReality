@@ -4,7 +4,7 @@ import { Mail, Linkedin, Instagram } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="relative z-10 bg-transparent border-t border-white/10 py-20">
+    <footer className="relative z-10 bg-transparent border-t border-white/10 pt-12 pb-6 md:py-20">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
@@ -21,32 +21,30 @@ export function Footer() {
             </div>
           </div>
 
-          <div>
-            <h4 className="font-display font-bold mb-6">Platform</h4>
-            <ul className="space-y-4">
-              <FooterLink href="/product">VR Headset</FooterLink>
-              <FooterLink href="/services">XR Solutions</FooterLink>
-              <FooterLink href="/services">Developers</FooterLink>
-              <FooterLink href="/news">Research</FooterLink>
-            </ul>
-          </div>
+          <div className="col-span-1 md:col-span-2 grid grid-cols-2 gap-8">
+            <div>
+              <h4 className="font-display font-bold mb-6">Platform</h4>
+              <ul className="space-y-4">
+                <FooterLink href="/product">VR Headset</FooterLink>
+                <FooterLink href="/services">XR Solutions</FooterLink>
+                <FooterLink href="/services">Developers</FooterLink>
+                <FooterLink href="/news">Research</FooterLink>
+              </ul>
+            </div>
 
-          <div>
-            <h4 className="font-display font-bold mb-6">Company</h4>
-            <ul className="space-y-4">
-              <FooterLink href="/#about">About Us</FooterLink>
-              <FooterLink href="/news">News</FooterLink>
-              <FooterLink href="/contact">Contact</FooterLink>
-            </ul>
+            <div>
+              <h4 className="font-display font-bold mb-6">Company</h4>
+              <ul className="space-y-4">
+                <FooterLink href="/#about">About Us</FooterLink>
+                <FooterLink href="/news">News</FooterLink>
+                <FooterLink href="/contact">Contact</FooterLink>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white">
+        <div className="pt-8 border-t border-white/10 flex justify-center items-center text-sm text-white text-center">
           <p>&copy; {new Date().getFullYear()} GenXReality Inc. All rights reserved.</p>
-          <div className="flex gap-8">
-            <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
-          </div>
         </div>
       </Container>
     </footer>

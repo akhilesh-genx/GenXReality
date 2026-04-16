@@ -61,16 +61,8 @@ export default function AiAgentsPage() {
     <div className="w-full overflow-x-hidden">
       {/* Hero Section */}
       <section ref={heroRef} className="relative h-[90vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/VR-Images/blurred-vr.webp"
-            alt="AI Agents in VR"
-            fill
-            className="hero-bg object-cover opacity-50"
-            priority
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+        <div className="absolute inset-0 z-0 bg-black" />
+        <div className="absolute inset-0 bg-black/50" />
         <Container className="relative z-10">
           <div className="max-w-4xl">
             <h1 className="text-[clamp(2rem,8vw,6rem)] font-bold mb-6 uppercase tracking-tighter leading-tight heading-gradient">
