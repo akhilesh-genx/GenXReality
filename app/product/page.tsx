@@ -93,7 +93,7 @@ export default function ProductPage() {
         </div>
         <div className="relative w-full h-full z-0 pointer-events-none hidden md:block">
           <Image
-            src="/VR-images/vr-right.png"
+            src="/VR-Images/VR-right.png"
             alt="GenXReality Premium VR Headset"
             fill
             className="object-contain object-right scale-90"
