@@ -26,7 +26,9 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      // Trigger the glass effect only when the navbar overlaps actual scrolling content, 
+      // preventing borders from showing over empty hero backgrounds.
+      setScrolled(window.scrollY > window.innerHeight * 0.7);
 
       // On homepage, link navbar opacity directly to scroll progression
       if (isHomePage) {
@@ -74,7 +76,7 @@ export function Navbar() {
   // Glass style for individual elements when scrolled
   const glassStyle = scrolled
     ? 'bg-black/40 backdrop-blur-md border border-white/10'
-    : 'bg-transparent border border-transparent';
+    : 'bg-transparent border-none';
 
   return (
     <header

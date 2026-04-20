@@ -206,8 +206,8 @@ export default function Home() {
                 </Button>
               </Link>
             </div>
-            <div className="relative aspect-square w-[80%] mx-auto rounded-2xl overflow-hidden">
-              <Image src="/VR-Images/V3-4-c.png" alt="Technology" fill className="object-contain" />
+            <div className="relative w-[80%] mx-auto rounded-2xl overflow-hidden" style={{ height: '380px' }}>
+              <img src="/VR-Images/V3-4-c.png" alt="GenXReality Innovations." className="w-full h-full object-contain" />
             </div>
           </div>
         </Container>

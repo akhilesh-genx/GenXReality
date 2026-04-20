@@ -172,8 +172,6 @@
 /* Hide Elfsight Free Widgets Branding */
 a[href*="elfsight.com"],
 a[href*="apps.elfsight.com"],
-[class*="elfsight-app"]>div>a,
-.eapps-link,
 div[class*="CustomCopyright__Container"],
 div[class*="Badge__Container"],
 [class*="WidgetBackground__Container"]>a,
@@ -208,7 +206,6 @@ a[title*="Free"] {
 
 /* ═══ Global Image Protection (Anti-Scrape / Right-Click) ═══ */
 img {
-  pointer-events: none !important;
   -webkit-user-drag: none !important;
   -khtml-user-drag: none !important;
   -moz-user-drag: none !important;

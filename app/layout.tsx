@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
@@ -10,6 +10,14 @@ import GlobalSparkle from '@/components/ui/GlobalSparkle';
 export const metadata: Metadata = {
   title: 'GenXReality | Enterprise XR Solutions',
   description: 'Delivering premium, high-performance immersive experiences and unlocking advanced enterprise use cases for VR across diverse sectors.',
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: '#050505',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

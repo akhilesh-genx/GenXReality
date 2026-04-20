@@ -128,11 +128,7 @@ const CustomCursor: React.FC = () => {
       />
 
       {/* Hide native cursor globally ONLY when this component is active (non-touch) */}
-      <style jsx global>{`
-        * {
-          cursor: none !important;
-        }
-      `}</style>
+      <style dangerouslySetInnerHTML={{ __html: `* { cursor: none !important; }` }} />
     </>
   );
 };
