@@ -207,7 +207,7 @@ export default function Home() {
               </Link>
             </div>
             <div className="relative aspect-square w-[80%] mx-auto rounded-2xl overflow-hidden">
-              <Image src="/VR-Images/v3-4-c.png" alt="Technology" fill className="object-contain" />
+              <Image src="/VR-Images/V3-4-c.png" alt="Technology" fill className="object-contain" />
             </div>
           </div>
         </Container>
