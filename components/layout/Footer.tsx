@@ -4,7 +4,7 @@ import { Mail, Linkedin, Instagram } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="relative z-10 bg-transparent border-t border-white/10 pt-12 pb-6 md:py-20">
+    <footer className="relative z-10 bg-transparent border-t border-white/10 pt-12 pb-2 md:pt-20 md:pb-8">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
@@ -27,7 +27,6 @@ export function Footer() {
               <ul className="space-y-4">
                 <FooterLink href="/product">VR Headset</FooterLink>
                 <FooterLink href="/services">XR Solutions</FooterLink>
-                <FooterLink href="/services">Developers</FooterLink>
                 <FooterLink href="/news">Research</FooterLink>
               </ul>
             </div>

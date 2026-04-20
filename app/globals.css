@@ -38,6 +38,7 @@
     font-style: normal;
     overflow-x: hidden;
     background-color: black;
+    letter-spacing: 0.01em;
   }
 
   html, body, * {
@@ -216,4 +217,37 @@ img {
   -moz-user-select: none !important;
   -ms-user-select: none !important;
   user-select: none !important;
+}
+
+/* ═══ Elfsight LinkedIn Feed — Mobile Responsive Fix ═══ */
+.elfsight-feed-wrapper {
+  overflow: visible;
+}
+
+.elfsight-feed-wrapper .eapps-widget-toolbar,
+.elfsight-feed-wrapper iframe,
+.elfsight-feed-wrapper > div {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Force scroll on very small screens where the widget still overflows */
+@media (max-width: 640px) {
+  .elfsight-feed-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Scale the widget up so it's legible on small screens */
+  .elfsight-feed-wrapper .eapps-linkedin-page-posts-grid,
+  .elfsight-feed-wrapper .eapps-linkedin-page-posts-list {
+    width: 100% !important;
+  }
+
+  .elfsight-feed-wrapper iframe {
+    transform-origin: top left;
+    width: 100% !important;
+  }
 }

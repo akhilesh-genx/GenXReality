@@ -430,7 +430,7 @@ export default function HeroFrameAnimation() {
                     style={{ opacity: 0, zIndex: 15 }}
                 >
                     {/* Base dark background */}
-                    <div className="absolute inset-0 bg-black/95" />
+                    <div className="absolute inset-0 bg-black" />
 
                     {/* Removed grid pattern */}
 
@@ -499,17 +499,11 @@ export default function HeroFrameAnimation() {
                     style={{ opacity: 0 }}
                 >
                     <div className="text-center max-w-4xl mx-auto p-8 md:p-12">
-                        <h2 className="text-[clamp(1.1rem,4vw,3.5rem)] font-bold tracking-tighter mb-6 text-white"
-                        >
+                        <h2 className="text-[clamp(1.1rem,4vw,3.5rem)] font-bold tracking-[0.02em] mb-6 text-white">
                             XR THAT DRIVES REAL RESULTS
-
                         </h2>
-                        <p className="text-base sm:text-lg text-white mb-6 leading-relaxed">
+                        <p className="text-base sm:text-lg text-white mb-6 leading-relaxed tracking-[0.01em]">
                             We create immersive solutions that help businesses sell faster, train smarter, and operate better using advanced VR and AI technologies.
-
-                        </p>
-                        <p className="text-sm sm:text-base text-white leading-relaxed">
-
                         </p>
                     </div>
                 </div>

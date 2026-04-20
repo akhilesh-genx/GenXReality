@@ -314,7 +314,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="w-full glass-card p-4 md:p-8 rounded-3xl border border-white/10 overflow-hidden min-h-[500px] mb-8 relative text-left">
+            <div className="w-full glass-card p-0 md:p-8 rounded-3xl border border-white/10 min-h-[600px] md:min-h-[500px] mb-8 relative text-left elfsight-feed-wrapper">
               <div className="absolute inset-0 bg-transparent pointer-events-none" />
               <div className="elfsight-app-b6304e32-de05-494e-8860-97a1974ef9f5 relative z-10" data-elfsight-app-lazy></div>
               <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />

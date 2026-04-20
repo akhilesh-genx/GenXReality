@@ -19,48 +19,46 @@ const navLinks = [
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [navOpacity, setNavOpacity] = useState(0);
   const pathname = usePathname();
   const isHomePage = pathname === '/';
 
+  // Non-home pages: glass is always ON. Home page: driven by scroll past hero.
+  const [scrolled, setScrolled] = useState(!isHomePage);
+  const [navOpacity, setNavOpacity] = useState(isHomePage ? 0 : 1);
+
   useEffect(() => {
+    // Immediately correct state when route changes (e.g. back/forward navigation)
+    if (!isHomePage) {
+      setScrolled(true);
+      setNavOpacity(1);
+      return;
+    }
+
     const handleScroll = () => {
-      // Trigger the glass effect only when the navbar overlaps actual scrolling content, 
-      // preventing borders from showing over empty hero backgrounds.
+      // Home page only: glass kicks in once user has scrolled into real content
       setScrolled(window.scrollY > window.innerHeight * 0.7);
 
-      // On homepage, link navbar opacity directly to scroll progression
-      if (isHomePage) {
-        const heroEl = document.getElementById('hero-frame-animation');
-        if (heroEl) {
-          const heroBottom = heroEl.offsetTop + heroEl.offsetHeight;
-          const startFade = heroBottom - window.innerHeight;
-          const endFade = heroBottom;
+      // Opacity tied to hero exit
+      const heroEl = document.getElementById('hero-frame-animation');
+      if (heroEl) {
+        const heroBottom = heroEl.offsetTop + heroEl.offsetHeight;
+        const startFade = heroBottom - window.innerHeight;
+        const endFade   = heroBottom;
 
-          if (window.scrollY <= startFade) {
-            setNavOpacity(0);
-          } else if (window.scrollY >= endFade) {
-            setNavOpacity(1);
-          } else {
-            const p = (window.scrollY - startFade) / (endFade - startFade);
-            setNavOpacity(p);
-          }
-        } else {
+        if (window.scrollY <= startFade) {
+          setNavOpacity(0);
+        } else if (window.scrollY >= endFade) {
           setNavOpacity(1);
+        } else {
+          setNavOpacity((window.scrollY - startFade) / (endFade - startFade));
         }
       } else {
         setNavOpacity(1);
       }
     };
 
-    handleScroll();
-
-    if (!isHomePage) {
-      setNavOpacity(1);
-    }
-
-    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // sync on mount
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isHomePage]);
 
