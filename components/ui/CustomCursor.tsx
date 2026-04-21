@@ -18,6 +18,7 @@ const CustomCursor: React.FC = () => {
   // Hover state (for scaling)
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isOverWidget, setIsOverWidget] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(true);
 
   useEffect(() => {
@@ -50,7 +51,7 @@ const CustomCursor: React.FC = () => {
 
     const animateRing = () => {
       // Lerp (Linear Interpolation) calculation
-      const easing = 0.35;
+      const easing = 0.85;
       
       ringX.current += (mouseX.current - ringX.current) * easing;
       ringY.current += (mouseY.current - ringY.current) * easing;
@@ -68,6 +69,15 @@ const CustomCursor: React.FC = () => {
     // Hover detection for interactive elements
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
+      if (!target || !target.closest) return;
+
+      const overWidget = !!(
+        target.closest('iframe') ||
+        target.closest('[class*="elfsight"]') ||
+        target.closest('[class*="eapps"]')
+      );
+      setIsOverWidget(overWidget);
+
       const interactiveElements = ['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT'];
       const isInteractive = interactiveElements.includes(target.tagName) || 
                           target.closest('button') || 
@@ -78,18 +88,22 @@ const CustomCursor: React.FC = () => {
       setIsHovering(!!isInteractive);
     };
 
-    window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('mouseenter', onMouseEnter);
-    window.addEventListener('mouseleave', onMouseLeave);
-    window.addEventListener('mouseover', handleMouseOver);
+    window.addEventListener('pointermove', onMouseMove, { capture: true });
+    window.addEventListener('mousemove', onMouseMove, { capture: true });
+    window.addEventListener('dragover', onMouseMove, { capture: true });
+    window.addEventListener('mouseenter', onMouseEnter, { capture: true });
+    window.addEventListener('mouseleave', onMouseLeave, { capture: true });
+    window.addEventListener('mouseover', handleMouseOver, { capture: true });
     
     requestRef.current = requestAnimationFrame(animateRing);
 
     return () => {
-      window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('mouseenter', onMouseEnter);
-      window.removeEventListener('mouseleave', onMouseLeave);
-      window.removeEventListener('mouseover', handleMouseOver);
+      window.removeEventListener('pointermove', onMouseMove, { capture: true });
+      window.removeEventListener('mousemove', onMouseMove, { capture: true });
+      window.removeEventListener('dragover', onMouseMove, { capture: true });
+      window.removeEventListener('mouseenter', onMouseEnter, { capture: true });
+      window.removeEventListener('mouseleave', onMouseLeave, { capture: true });
+      window.removeEventListener('mouseover', handleMouseOver, { capture: true });
       cancelAnimationFrame(requestRef.current);
     };
   }, [isVisible, isTouchDevice]);
@@ -102,7 +116,7 @@ const CustomCursor: React.FC = () => {
       <div
         ref={dotRef}
         className={`fixed top-0 left-0 pointer-events-none rounded-full transition-all duration-300 ease-out z-[9999] 
-          ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+          ${isVisible && !isOverWidget ? 'opacity-100' : 'opacity-0'}`}
         style={{
           width: isHovering ? '22px' : '14px',
           height: isHovering ? '22px' : '14px',
@@ -117,7 +131,7 @@ const CustomCursor: React.FC = () => {
         ref={ringRef}
         
         className={`fixed top-0 left-0 pointer-events-none rounded-full border-2 transition-all duration-500 ease-out z-[9998]
-          ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+          ${isVisible && !isOverWidget ? 'opacity-100' : 'opacity-0'}`}
         style={{
           width: isHovering ? '60px' : '40px',
           height: isHovering ? '60px' : '40px',
@@ -128,7 +142,12 @@ const CustomCursor: React.FC = () => {
       />
 
       {/* Hide native cursor globally ONLY when this component is active (non-touch) */}
-      <style dangerouslySetInnerHTML={{ __html: `* { cursor: none !important; }` }} />
+      <style dangerouslySetInnerHTML={{ __html: `
+        * { cursor: none !important; }
+        iframe, iframe *, [class*="elfsight"], [class*="elfsight"] *, [class*="eapps"], [class*="eapps"] * {
+          cursor: auto !important;
+        }
+      ` }} />
     </>
   );
 };
