@@ -197,22 +197,23 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ className }) =>
 
     // ── Draw particles ───────────────────────────────────────────────────
     for (const p of ps) {
-      // Outer glow halo — simple solid circle with alpha (no gradient)
-      if (p.glowIntensity > 0.04) {
-        const haloR = p.size * (3 + p.glowIntensity * 4);
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, haloR, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${NEON}, ${(p.glowIntensity * 0.12).toFixed(3)})`;
-        ctx.fill();
-      }
-
       // Core — always drawn
       const coreR = p.size * (1 + p.glowIntensity * 0.7);
+
+      if (p.glowIntensity > 0.04) {
+        ctx.shadowBlur = p.glowIntensity * 20;
+        ctx.shadowColor = `rgba(${NEON}, ${p.glowIntensity})`;
+      } else {
+        ctx.shadowBlur = 0;
+      }
+
       ctx.beginPath();
       ctx.arc(p.x, p.y, coreR, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(${NEON}, ${Math.min(0.95, p.opacity)})`;
       ctx.fill();
     }
+    // Reset shadow so it doesn't affect lines on the next frame
+    ctx.shadowBlur = 0;
 
     rafRef.current = requestAnimationFrame(draw);
   }, []);
