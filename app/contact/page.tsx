@@ -55,7 +55,7 @@ export default function ContactPage() {
               </div>
 
               {/* Google Maps */}
-              <div className="w-full h-64 rounded-2xl overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500">
+              <div className="w-full h-64 rounded-2xl overflow-hidden border border-white/10  hover:grayscale-0 transition-all duration-500">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.690471450892!2d78.60266717462784!3d17.426635901674288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9f3da2cf6323%3A0x70ad222a4c12f9c6!2sGenXReality!5e0!3m2!1sen!2sin!4v1772885226964!5m2!1sen!2sin"
                   width="100%"

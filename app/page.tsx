@@ -197,13 +197,13 @@ export default function Home() {
             <div>
               <h3 className="text-3xl md:text-5xl font-bold mb-6 uppercase heading-gradient">Innovations & <br /><span className="text-brand-primary">Showcase.</span></h3>
               <p className="text-lg text-white mb-8 font-light leading-relaxed">
-                GenXReality is a high-performance PC-powered VR system under development, focused on delivering scalable, low-latency immersive environments for education, training, and enterprise applications—designed and built in India.
+                GenXEdu is a high-performance PC-powered VR system under development, focused on delivering scalable, low-latency immersive environments for education, training, and enterprise applications—designed and built in India.
 
               </p>
               <Link href="/product">
                 <Button variant="outline" className="border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-black uppercase tracking-wider flex items-center gap-2">
-                  Explore GenXReality <ArrowRight className="w-4 h-4" />
-                </Button>
+                  Explore GenXEdu <ArrowRight className="w-4 h-4" />
+                </Button> 
               </Link>
             </div>
             <div className="relative w-[80%] mx-auto rounded-2xl overflow-hidden" style={{ height: '380px' }}>

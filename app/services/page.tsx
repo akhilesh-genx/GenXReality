@@ -38,13 +38,13 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative h-[80vh] flex items-center justify-center overflow-hidden"
+        className="relative h-[40vh] md:h-[80vh] flex items-center justify-center overflow-hidden"
       >
         <div className="absolute inset-0 z-0 bg-black" />
         <div className="absolute inset-0 bg-black/40" />
         <Container className="relative z-10 w-full">
-          <div className="max-w-4xl pt-20">
-            <h1 className="text-[clamp(2.2rem,8vw,6rem)] font-bold mb-6 uppercase tracking-tighter leading-tight heading-gradient">
+          <div className="max-w-4xl pt-4 md:pt-20">
+            <h1 className="text-[clamp(2.2rem,8vw,6rem)] font-bold mb-2 md:mb-6 uppercase tracking-tighter leading-tight heading-gradient">
               Elevate Your <br />
               <span className="text-brand-primary">Business Reality</span>
             </h1>
@@ -54,7 +54,7 @@ export default function ServicesPage() {
 
       <div className="services-content pb-24">
         {/* Real Estate WebXR Overview Card */}
-        <Section className="relative py-20 bg-transparent border-t border-white/5 overflow-hidden">
+        <Section className="relative py-10 md:py-20 bg-transparent border-t border-white/5 overflow-hidden">
           <Container>
             <div className="fade-in-section grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden glass-panel border-white/10 group order-2 lg:order-1">
@@ -85,7 +85,7 @@ export default function ServicesPage() {
         </Section>
 
         {/* AI Calling Agents Overview Card */}
-        <Section className="relative py-20 bg-transparent border-t border-white/5 overflow-hidden">
+        <Section className="relative py-10 md:py-20 bg-transparent border-t border-white/5 overflow-hidden">
           <Container>
             <div className="fade-in-section grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
