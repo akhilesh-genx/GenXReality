@@ -153,15 +153,20 @@ export default function VirtualToursPage() {
           />
         </div>
         <div className="absolute inset-0 bg-black/50 pointer-events-none z-20" />
-        <Container className="relative z-10">
+        <Container className="relative z-30">
           <div className="max-w-4xl">
             <h1 className="text-[clamp(2rem,8vw,6rem)] font-bold mb-6 uppercase tracking-tighter leading-tight heading-gradient">
               3D Real Estate <br />
               <span className="text-brand-primary">Virtual Tours</span>
             </h1>
-            <p className="text-lg md:text-2xl text-white max-w-2xl font-light leading-relaxed mb-8">
-              Turn Property Listings into Interactive 3D Experiences That Sell Faster. <p className="text-lg md:text-s text-white max-w-xl font-light leading-relaxed mb-6"> Deliver high-quality, browser-based virtual tours that work instantly across devices-no apps, no friction.</p>
-            </p>
+            <div className="mb-8">
+              <p className="text-lg md:text-2xl text-white max-w-2xl font-light leading-relaxed mb-4">
+                Turn Property Listings into Interactive 3D Experiences That Sell Faster.
+              </p>
+              <p className="text-base md:text-lg text-white/90 max-w-xl font-light leading-relaxed">
+                Deliver high-quality, browser-based virtual tours that work instantly across devices—no apps, no friction.
+              </p>
+            </div>
 
             <Button>
               View Demo Tour
