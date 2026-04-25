@@ -136,59 +136,6 @@ export default function Home() {
       </Section>
 
       {/* ═══════════════════════════════════════════════════════════ */}
-      {/* FOUNDER */}
-      {/* ═══════════════════════════════════════════════════════════ */}
-      <Section id="founder">
-        <Container>
-          <div className="max-w-6xl mx-auto px-4 md:px-0">
-            {/* Section Label */}
-            <div className="mb-12 md:mb-16">
-              <h2 className="text-[clamp(1.8rem,5vw,4rem)] font-bold uppercase heading-gradient">Founder</h2>
-            </div>
-
-            {/* Two-column layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              {/* Left — Portrait */}
-              <div className="flex justify-center lg:justify-start">
-                <div className="relative w-full max-w-[360px] md:max-w-[450px] lg:max-w-[550px] h-[350px] md:h-[400px] rounded-2xl overflow-hidden border border-white/10 group transition-all duration-500 hover:border-brand-primary/40">
-                  {/* Subtle glow on hover */}
-                  <div className="absolute -inset-1 rounded-2xl bg-brand-primary/0 group-hover:bg-brand-primary/10 blur-xl transition-all duration-700 z-0" />
-                  <Image
-                    src="/founder.jpeg"
-                    alt="Krishna Vamshi — Founder & CEO, GenXReality"
-                    fill
-                    className="object-cover z-10 group-hover:scale-[1.03] transition-transform duration-700 ease-out"
-                  />
-                  {/* Removed bottom vignette */}
-                </div>
-              </div>
-
-              {/* Right — Text Content */}
-              <div className="lg:col-span-1">
-                <h3 className="text-3xl md:text-4xl font-bold mb-1 text-white" style={{ WebkitTextFillColor: 'white', background: 'none', backgroundClip: 'unset', WebkitBackgroundClip: 'unset' }}>
-                  Krishna Vamshi
-                </h3>
-                <p className="text-sm md:text-base text-white/50 uppercase tracking-wider mb-8 font-medium">
-                  Founder &amp; CEO, GenXReality
-                </p>
-
-                <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-8 font-light">
-                  Krishna Vamshi brings experience in hardware development, AI, and product design, with a focus on XR technologies. His work is centered on building efficient and scalable systems that can be used across different industries.
-                </p>
-
-                {/* Quote */}
-                <div className="relative pl-6 border-l-2 border-brand-primary/40">
-                  <p className="text-base md:text-lg text-white/50 italic leading-relaxed">
-                    &ldquo;We focus on building practical XR solutions that can be used in real-world applications.&rdquo;
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* ═══════════════════════════════════════════════════════════ */}
       {/* PRODUCT — GenX One */}
       {/* ═══════════════════════════════════════════════════════════ */}
       <Section id="product">
@@ -296,6 +243,59 @@ export default function Home() {
                 fill
                 className="object-contain p-4 z-10 hover:scale-105 transition-transform duration-700"
               />
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* FOUNDER */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <Section id="founder">
+        <Container>
+          <div className="max-w-6xl mx-auto px-4 md:px-0">
+            {/* Section Label */}
+            <div className="mb-12 md:mb-16">
+              <h2 className="text-[clamp(1.8rem,5vw,4rem)] font-bold uppercase heading-gradient">Founder</h2>
+            </div>
+
+            {/* Two-column layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              {/* Left — Portrait */}
+              <div className="flex justify-center lg:justify-start">
+                <div className="relative w-full max-w-[360px] md:max-w-[450px] lg:max-w-[550px] h-[350px] md:h-[400px] rounded-2xl overflow-hidden border border-white/10 group transition-all duration-500 hover:border-brand-primary/40">
+                  {/* Subtle glow on hover */}
+                  <div className="absolute -inset-1 rounded-2xl bg-brand-primary/0 group-hover:bg-brand-primary/10 blur-xl transition-all duration-700 z-0" />
+                  <Image
+                    src="/founder.jpeg"
+                    alt="Krishna Vamshi — Founder & CEO, GenXReality"
+                    fill
+                    className="object-cover z-10 group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                  />
+                  {/* Removed bottom vignette */}
+                </div>
+              </div>
+
+              {/* Right — Text Content */}
+              <div className="lg:col-span-1">
+                <h3 className="text-3xl md:text-4xl font-bold mb-1 text-white" style={{ WebkitTextFillColor: 'white', background: 'none', backgroundClip: 'unset', WebkitBackgroundClip: 'unset' }}>
+                  Krishna Vamshi
+                </h3>
+                <p className="text-sm md:text-base text-white/50 uppercase tracking-wider mb-8 font-medium">
+                  Founder &amp; CEO, GenXReality
+                </p>
+
+                <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-8 font-light">
+                  Krishna Vamshi brings experience in hardware development, AI, and product design, with a focus on XR technologies. His work is centered on building efficient and scalable systems that can be used across different industries.
+                </p>
+
+                {/* Quote */}
+                <div className="relative pl-6 border-l-2 border-brand-primary/40">
+                  <p className="text-base md:text-lg text-white/50 italic leading-relaxed">
+                    &ldquo;We focus on building practical XR solutions that can be used in real-world applications.&rdquo;
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </Container>

@@ -54,14 +54,14 @@ export default function ProductPage() {
         {/* Overlay Text */}
         <div className="absolute inset-0 flex flex-col items-start justify-center z-10 px-8 md:px-24 pointer-events-none">
           <div className="z-20 pointer-events-auto flex flex-col items-start">
-            <div className="font-bricolage text-[clamp(68px,14vw,200px)] leading-[0.8] mb-4 font-black tracking-[0.02em] flex items-center uppercase ml-[-0.05em]">
+            <div className="font-bricolage text-[clamp(68px,14vw,200px)] leading-[0.8] mb-4 font-black tracking-[-0.02em] md:tracking-[0.01em] flex items-center uppercase ml-[-0.05em]">
               {/* GENX */}
               <span style={{ color: "#00ff1A" }}>GENX</span>
               {/* EDU - fake outline using shadows */}
               <span
+                className="tracking-[0.02em] md:tracking-[0.05em]"
                 style={{
                   color: "#000000",
-                  letterSpacing: "0.08em",
                   textShadow: `2px 0 #00ff1A, -2px 0 #00ff1A, 0 2px #00ff1A, 0 -2px #00ff1A, 2px 2px #00ff1A, -2px -2px #00ff1A, 2px -2px #00ff1A, -2px 2px #00ff1A, 0 0 10px rgba(0,255,26,0.6)`
                 }}
               >

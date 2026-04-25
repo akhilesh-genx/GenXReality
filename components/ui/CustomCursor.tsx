@@ -74,7 +74,8 @@ const CustomCursor: React.FC = () => {
       const overWidget = !!(
         target.closest('iframe') ||
         target.closest('[class*="elfsight"]') ||
-        target.closest('[class*="eapps"]')
+        target.closest('[class*="eapps"]') ||
+        target.closest('.panorama-viewer-wrapper')
       );
       setIsOverWidget(overWidget);
 
@@ -144,8 +145,12 @@ const CustomCursor: React.FC = () => {
       {/* Hide native cursor globally ONLY when this component is active (non-touch) */}
       <style dangerouslySetInnerHTML={{ __html: `
         * { cursor: none !important; }
-        iframe, iframe *, [class*="elfsight"], [class*="elfsight"] *, [class*="eapps"], [class*="eapps"] * {
+        iframe, iframe *, [class*="elfsight"], [class*="elfsight"] *, [class*="eapps"], [class*="eapps"] *,
+        .panorama-viewer-wrapper, .panorama-viewer-wrapper * {
           cursor: auto !important;
+        }
+        .panorama-viewer-wrapper canvas {
+          cursor: pointer !important;
         }
       ` }} />
     </>
