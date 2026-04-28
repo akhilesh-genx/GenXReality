@@ -11,7 +11,7 @@ import { ClassicMobileMockup } from '@/components/ui/ClassicMobileMockup';
 import { Smartphone, Sparkles, Layers, ArrowLeft, Box } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/Button';   
 import { PanoramaSection } from '@/components/ui/PanoramaSection';
 
 gsap.registerPlugin(ScrollTrigger);

@@ -8,7 +8,7 @@ export async function GET() {
   try {
     const publicDir = path.join(process.cwd(), 'public');
 
-    const seq1Dir = path.join(publicDir, 'Final-Frames');
+    const seq1Dir = path.join(publicDir, 'final-frames');
     const upscaledDir = path.join(publicDir, 'ezgif-upscaled');
 
     // Load first 160 frames from Final-Frames

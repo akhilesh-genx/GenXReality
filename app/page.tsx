@@ -154,7 +154,7 @@ export default function Home() {
               </Link>
             </div>
             <div className="relative w-[80%] mx-auto rounded-2xl overflow-hidden" style={{ height: '380px' }}>
-              <img src="/VR-Images/V3-4-c.png" alt="GenXReality Innovations." className="w-full h-full object-contain" />
+              <img src="/vr-images/v3-4-c.png" alt="GenXReality Innovations." className="w-full h-full object-contain" />
             </div>
           </div>
         </Container>

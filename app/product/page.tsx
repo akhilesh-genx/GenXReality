@@ -93,7 +93,7 @@ export default function ProductPage() {
         </div>
         <div className="relative w-full h-full z-0 pointer-events-none hidden md:block">
           <Image
-            src="/VR-Images/VR-right.png"
+            src="/vr-images/vr-right.png"
             alt="GenXReality Premium VR Headset."
             fill
             className="object-contain object-right scale-90"
@@ -156,7 +156,7 @@ export default function ProductPage() {
             >
               <div className="mb-10 w-full flex justify-center">
                 <Image
-                  src="/Industrial_Design.webp"
+                  src="/industrial_design.webp"
                   alt="Industrial Design"
                   width={380}     // Increased size
                   height={280}
@@ -179,7 +179,7 @@ export default function ProductPage() {
               {/* Removed extra white pill background and border effect */}
               <div className="mb-10 w-full flex justify-center">
                 <Image
-                  src="/advanced_Optics.png"
+                  src="/advanced_optics.png"
                   alt="Advanced Optics"
                   width={420}     // Largest size for right image
                   height={300}
@@ -204,7 +204,7 @@ export default function ProductPage() {
           <div className="scroll-reveal flex justify-center mb-6">
             <div className="relative w-full max-w-2xl aspect-[2/1]">
               <Image
-                src="/VR-Images/v3.png"
+                src="/vr-images/v3.png"
                 alt="Headset Highlight"
                 fill
                 className="object-contain"
