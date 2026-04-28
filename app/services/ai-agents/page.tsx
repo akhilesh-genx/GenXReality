@@ -19,7 +19,7 @@ export default function AiAgentsPage() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.utils.toArray('section').forEach((sec: any) => {
-        const texts = sec.querySelectorAll('h2, h3, p, li');
+        const texts = Array.from(sec.querySelectorAll('h2, h3, p, li')).filter((el: any) => !el.closest('.service-card-internal'));
         if (texts.length) {
           gsap.from(texts, {
             scrollTrigger: { trigger: sec, start: 'top 80%', toggleActions: 'play none none reverse' },
@@ -27,7 +27,7 @@ export default function AiAgentsPage() {
           });
         }
         
-        const cards = sec.querySelectorAll('.feature-card, .glass-card, .glass-panel');
+        const cards = Array.from(sec.querySelectorAll('.feature-card, .glass-card, .glass-panel')).filter((el: any) => !el.closest('.service-card-internal'));
         if (cards.length) {
           gsap.from(cards, {
             scrollTrigger: { trigger: sec, start: 'top 75%', toggleActions: 'play none none reverse' },
@@ -65,7 +65,7 @@ export default function AiAgentsPage() {
         <div className="absolute inset-0 bg-black/50" />
         <Container className="relative z-10">
           <div className="max-w-4xl">
-            <h1 className="text-[clamp(2rem,8vw,6rem)] font-bold mb-6 uppercase tracking-tighter leading-tight heading-gradient">
+            <h1 className="text-[clamp(2rem,8vw,6rem)] font-bold mb-6 uppercase tracking-tight leading-tight heading-gradient pl-1">
               Autonomous <br />
               <span className="text-brand-primary">AI Agents</span>
             </h1>

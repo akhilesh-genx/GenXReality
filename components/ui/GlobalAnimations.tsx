@@ -22,7 +22,7 @@ export function GlobalAnimations() {
         // Apply smooth X-slide to text
         textElements.forEach((el: any) => {
           // exclude hero content to avoid timeline conflicts, and specific custom ones
-          if (el.closest('.h-[70vh]') || el.closest('.h-screen') || el.closest('#hero') || el.closest('.hero-bg') || el.classList.contains('how-it-works-text')) return;
+          if (el.closest('.h-[70vh]') || el.closest('.h-screen') || el.closest('#hero') || el.closest('.hero-bg') || el.classList.contains('how-it-works-text') || el.closest('.service-card-internal')) return;
           
           gsap.from(el, {
             scrollTrigger: {
@@ -39,7 +39,7 @@ export function GlobalAnimations() {
 
         // Apply smoother, tighter X-slide to cards
         cardElements.forEach((el: any) => {
-          if (el.closest('.h-screen') || el.closest('.h-[70vh]') || el.closest('#hero') || el.classList.contains('how-it-works-item')) return;
+          if (el.closest('.h-screen') || el.closest('.h-[70vh]') || el.closest('#hero') || el.classList.contains('how-it-works-item') || el.closest('.service-card-internal')) return;
           
           gsap.from(el, {
             scrollTrigger: {

@@ -11,6 +11,7 @@
 @theme {
   --font-sans: "Cabinet Grotesk", "Rethink Sans", sans-serif;
   --font-display: "Cabinet Grotesk", "Rethink Sans", sans-serif;
+  --font-body: "DM Mono", "Rethink Sans", monospace;
 
   --color-brand-primary: #00ff1A;
   /* Pure Neon Green */
@@ -64,6 +65,20 @@
   h6 {
     @apply font-display tracking-tight text-white/90;
     font-family: "Cabinet Grotesk", "Rethink Sans", sans-serif;
+  }
+
+  /* DM Mono for all body/content text — NOT headings */
+  p, span, li, a, label, blockquote, small, td, th, figcaption, .font-body {
+    font-family: "DM Mono", "Rethink Sans", monospace;
+  }
+
+  /* Ensure headings and navlinks keep display font */
+  h1, h2, h3, h4, h5, h6, button, nav a {
+    font-family: "Cabinet Grotesk", "Rethink Sans", sans-serif !important;
+  }
+
+  .mono-heading {
+    font-family: "DM Mono", "Rethink Sans", monospace !important;
   }
 
   ::selection {
