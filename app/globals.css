@@ -207,14 +207,13 @@
   animation-delay: 3s;
 }
 
-/* Hide Elfsight/SociableKIT Free Widgets Branding */
+/* Hide Elfsight Free Widgets Branding */
 a[href*="elfsight.com"],
 a[href*="apps.elfsight.com"],
 div[class*="CustomCopyright__Container"],
 div[class*="Badge__Container"],
 [class*="WidgetBackground__Container"]>a,
-a[title*="Free"],
-a[href*="sociablekit.com"] {
+a[title*="Free"] {
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
@@ -257,22 +256,19 @@ img {
   user-select: none !important;
 }
 
-/* ═══ LinkedIn Feed — Mobile Responsive Fix ═══ */
-.elfsight-feed-wrapper,
-.sk-ww-linkedin-page-post,
-[class*="sk-"],
-.sociablekit-widget-container {
+/* ═══ Fouita LinkedIn Feed - Mobile Responsive Fix ═══ */
+.fouita-feed-wrapper {
+  overflow: visible;
+}
+
+.fouita-feed-wrapper iframe,
+.fouita-feed-wrapper > div {
   width: 100% !important;
-  max-width: 100% !important;
-  min-width: 0 !important;
-  box-sizing: border-box !important;
 }
 
 @media (max-width: 640px) {
-  .elfsight-feed-wrapper,
-  .sk-ww-linkedin-page-post,
-  [class*="sk-"] {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+  .fouita-feed-wrapper iframe {
+    transform-origin: top left;
+    width: 100% !important;
   }
 }

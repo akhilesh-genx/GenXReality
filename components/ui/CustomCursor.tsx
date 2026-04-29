@@ -73,10 +73,8 @@ const CustomCursor: React.FC = () => {
 
       const overWidget = !!(
         target.closest('iframe') ||
-        target.closest('[class*="elfsight"]') ||
-        target.closest('[class*="eapps"]') ||
-        target.closest('[class*="sk-"]') ||
-        target.closest('[class*="sociablekit"]') ||
+        target.closest('.ft') ||
+        target.closest('[class*="fouita"]') ||
         target.closest('.panorama-viewer-wrapper')
       );
       setIsOverWidget(overWidget);
@@ -148,8 +146,7 @@ const CustomCursor: React.FC = () => {
       <style dangerouslySetInnerHTML={{
         __html: `
         * { cursor: none !important; }
-        iframe, iframe *, [class*="elfsight"], [class*="elfsight"] *, [class*="eapps"], [class*="eapps"] *,
-        [class*="sk-"], [class*="sk-"] *, [class*="sociablekit"], [class*="sociablekit"] *,
+        iframe, iframe *, .ft, .ft *, [class*="fouita"], [class*="fouita"] *,
         .panorama-viewer-wrapper, .panorama-viewer-wrapper * {
           cursor: auto !important;
         }

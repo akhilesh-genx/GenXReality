@@ -30,37 +30,6 @@ const serviceIconMap: Record<string, React.ReactNode> = {
 
 export default function Home() {
   useEffect(() => {
-    // ═══ Console Error Suppression for LinkedIn Widget ═══
-    // The SociableKIT widget tries to fetch analytics from a broken URL (localtesting.com).
-    // We intercept these specific calls to prevent "Failed to fetch" console errors.
-    const originalFetch = window.fetch;
-    const originalXHR = window.XMLHttpRequest;
-
-    window.fetch = async (...args) => {
-      const url = typeof args[0] === 'string' ? args[0] : (args[0] instanceof Request ? args[0].url : '');
-      if (url.includes('localtesting.com') || url.includes('track-widget-views.php')) {
-        return new Response(JSON.stringify({ status: 'suppressed' }), {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' }
-        });
-      }
-      return originalFetch(...args);
-    };
-
-    // Also intercept XHR for the same reason
-    (window as any).XMLHttpRequest = function () {
-      const xhr = new originalXHR();
-      const originalOpen = xhr.open;
-      xhr.open = function (method: string, url: string | URL) {
-        if (url.toString().includes('localtesting.com') || url.toString().includes('track-widget-views.php')) {
-          // Force a harmless URL or we could also mock the response
-          return originalOpen.apply(this, [method, 'data:application/json,{"status":"suppressed"}'] as any);
-        }
-        return originalOpen.apply(this, arguments as any);
-      };
-      return xhr;
-    };
-
     const ctx = gsap.context(() => {
       gsap.utils.toArray('section').forEach((sec: any) => {
         if (sec.id === 'how-it-works' || sec.id === 'hero') return;
@@ -109,8 +78,6 @@ export default function Home() {
 
     return () => {
       ctx.revert();
-      window.fetch = originalFetch;
-      window.XMLHttpRequest = originalXHR;
     };
   }, []);
 
@@ -356,10 +323,10 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="w-full bg-black/40 backdrop-blur-md transition-colors duration-300 p-0 md:p-8 rounded-3xl border border-white/5 min-h-[600px] md:min-h-[500px] mb-8 relative text-left elfsight-feed-wrapper">
+            <div className="w-full bg-black/40 backdrop-blur-md transition-colors duration-300 p-0 md:p-8 rounded-3xl border border-white/5 min-h-[600px] md:min-h-[500px] mb-8 relative text-left fouita-feed-wrapper">
               <div className="absolute inset-0 bg-transparent pointer-events-none" />
-              <div className="sk-ww-linkedin-page-post relative z-10" data-embed-id="25677038"></div>
-              <Script src="https://widgets.sociablekit.com/linkedin-page-posts/widget.js" strategy="lazyOnload" />
+              <div data-key="LinkedIn Carousel Autoplay" className="ft relative z-10" id="ftaizwapt"></div>
+              <Script src="https://wdg.fouita.com/widgets/0x43be6b.js" strategy="lazyOnload" />
             </div>
           </div>
         </Container>
