@@ -30,10 +30,41 @@ const serviceIconMap: Record<string, React.ReactNode> = {
 
 export default function Home() {
   useEffect(() => {
+    // ═══ Console Error Suppression for LinkedIn Widget ═══
+    // The SociableKIT widget tries to fetch analytics from a broken URL (localtesting.com).
+    // We intercept these specific calls to prevent "Failed to fetch" console errors.
+    const originalFetch = window.fetch;
+    const originalXHR = window.XMLHttpRequest;
+
+    window.fetch = async (...args) => {
+      const url = typeof args[0] === 'string' ? args[0] : (args[0] instanceof Request ? args[0].url : '');
+      if (url.includes('localtesting.com') || url.includes('track-widget-views.php')) {
+        return new Response(JSON.stringify({ status: 'suppressed' }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' }
+        });
+      }
+      return originalFetch(...args);
+    };
+
+    // Also intercept XHR for the same reason
+    (window as any).XMLHttpRequest = function () {
+      const xhr = new originalXHR();
+      const originalOpen = xhr.open;
+      xhr.open = function (method: string, url: string | URL) {
+        if (url.toString().includes('localtesting.com') || url.toString().includes('track-widget-views.php')) {
+          // Force a harmless URL or we could also mock the response
+          return originalOpen.apply(this, [method, 'data:application/json,{"status":"suppressed"}'] as any);
+        }
+        return originalOpen.apply(this, arguments as any);
+      };
+      return xhr;
+    };
+
     const ctx = gsap.context(() => {
       gsap.utils.toArray('section').forEach((sec: any) => {
         if (sec.id === 'how-it-works' || sec.id === 'hero') return;
-        
+
         // Emulate 'how-it-works-text' (-50x, 0 opacity, power3.out)
         const texts = sec.querySelectorAll('h2, h3, p');
         if (texts.length) {
@@ -42,7 +73,7 @@ export default function Home() {
             x: -50, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out',
           });
         }
-        
+
         // Emulate 'how-it-works-item' for all cards (-30x, stagger 0.2)
         const cards = sec.querySelectorAll('.glass-card, .service-item, .feature-card, .value-card, .news-card');
         if (cards.length) {
@@ -75,7 +106,12 @@ export default function Home() {
         scale: 0.8, opacity: 0, duration: 1, ease: 'power3.out',
       });
     });
-    return () => ctx.revert();
+
+    return () => {
+      ctx.revert();
+      window.fetch = originalFetch;
+      window.XMLHttpRequest = originalXHR;
+    };
   }, []);
 
   return (
@@ -150,7 +186,7 @@ export default function Home() {
               <Link href="/product">
                 <Button variant="outline" className="border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-black uppercase tracking-wider flex items-center gap-2">
                   Explore GenXEdu <ArrowRight className="w-4 h-4" />
-                </Button> 
+                </Button>
               </Link>
             </div>
             <div className="relative w-[80%] mx-auto rounded-2xl overflow-hidden" style={{ height: '380px' }}>
@@ -167,32 +203,32 @@ export default function Home() {
         <Container>
           <div className="px-4 md:px-0">
             <div className="max-w-3xl mb-16">
-            <h2 className="text-[clamp(1.8rem,5vw,4rem)] font-bold mb-6 uppercase heading-gradient">Enterprise <span className="text-brand-primary">XR Solutions</span></h2>
-            <p className="text-xl text-white">
-              We help forward-thinking companies integrate immersive XR technologies into their workflows to improve efficiency, training, and digital experiences.
+              <h2 className="text-[clamp(1.8rem,5vw,4rem)] font-bold mb-6 uppercase heading-gradient">Enterprise <span className="text-brand-primary">XR Solutions</span></h2>
+              <p className="text-xl text-white">
+                We help forward-thinking companies integrate immersive XR technologies into their workflows to improve efficiency, training, and digital experiences.
 
-            </p>
-          </div>
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {services.slice(0, 3).map((service) => (
-              <div key={service.id} className="service-item glass-card p-8 rounded-2xl border border-white/10 group">
-                <div className="mb-6 p-4 bg-white/5 rounded-2xl w-fit border border-white/10 group-hover:bg-brand-primary/10 transition-colors">
-                  {serviceIconMap[service.icon] || <Building className="w-12 h-12 text-brand-primary" />}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              {services.slice(0, 3).map((service) => (
+                <div key={service.id} className="service-item glass-card p-8 rounded-2xl border border-white/10 group">
+                  <div className="mb-6 p-4 bg-white/5 rounded-2xl w-fit border border-white/10 group-hover:bg-brand-primary/10 transition-colors">
+                    {serviceIconMap[service.icon] || <Building className="w-12 h-12 text-brand-primary" />}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 heading-gradient">{service.title}</h3>
+                  <p className="text-white text-sm  mb-6">{service.description}</p>
                 </div>
-                <h3 className="text-xl font-bold mb-3 heading-gradient">{service.title}</h3>
-                <p className="text-white text-sm  mb-6">{service.description}</p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          <div className="flex justify-center">
-            <Link href="/services">
-              <Button variant="outline" className="border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-black uppercase tracking-wider flex items-center gap-2">
-                View All Services <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
-          </div>
+            <div className="flex justify-center">
+              <Link href="/services">
+                <Button variant="outline" className="border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-black uppercase tracking-wider flex items-center gap-2">
+                  View All Services <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </Container>
       </Section>
@@ -270,7 +306,13 @@ export default function Home() {
                     src="/founder.jpeg"
                     alt="Krishna Vamshi — Founder & CEO, GenXReality"
                     fill
-                    className="object-cover z-10 group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                    className="object-cover z-10 group-hover:scale-[1.03] transition-transform duration-700 ease-out hidden md:block"
+                  />
+                  <Image
+                    src="/founder1.jpeg"
+                    alt="Krishna Vamshi — Founder & CEO, GenXReality"
+                    fill
+                    className="object-cover z-10 group-hover:scale-[1.03] transition-transform duration-700 ease-out md:hidden"
                   />
                   {/* Removed bottom vignette */}
                 </div>
@@ -314,10 +356,10 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="w-full glass-card p-0 md:p-8 rounded-3xl border border-white/10 min-h-[600px] md:min-h-[500px] mb-8 relative text-left elfsight-feed-wrapper">
+            <div className="w-full bg-black/40 backdrop-blur-md transition-colors duration-300 p-0 md:p-8 rounded-3xl border border-white/5 min-h-[600px] md:min-h-[500px] mb-8 relative text-left elfsight-feed-wrapper">
               <div className="absolute inset-0 bg-transparent pointer-events-none" />
-              <div className="elfsight-app-b6304e32-de05-494e-8860-97a1974ef9f5 relative z-10" data-elfsight-app-lazy></div>
-              <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
+              <div className="sk-ww-linkedin-page-post relative z-10" data-embed-id="25677038"></div>
+              <Script src="https://widgets.sociablekit.com/linkedin-page-posts/widget.js" strategy="lazyOnload" />
             </div>
           </div>
         </Container>

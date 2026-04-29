@@ -1,0 +1,24 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Fix for _next folder access (some Hostinger servers block folders starting with underscore)
+  RewriteRule ^_next/(.*)$ _next/$1 [L]
+
+  # Clean URLs: map /about to /about.html
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^([^/]+)/?$ $1.html [L]
+
+  # Clean URLs for subdirectories: map /services/ai-agents to /services/ai-agents.html
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1/$2.html -f
+  RewriteRule ^([^/]+)/([^/]+)/?$ $1/$2.html [L]
+
+  # Route everything else to index.html to allow client-side routing to take over
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>

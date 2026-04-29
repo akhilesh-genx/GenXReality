@@ -42,15 +42,20 @@
     letter-spacing: 0.01em;
   }
 
-  html, body, * {
-    scrollbar-width: none !important; /* Firefox */
-    -ms-overflow-style: none !important; /* IE/Edge */
+  html,
+  body,
+  * {
+    scrollbar-width: none !important;
+    /* Firefox */
+    -ms-overflow-style: none !important;
+    /* IE/Edge */
   }
 
-  html::-webkit-scrollbar, 
-  body::-webkit-scrollbar, 
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
   *::-webkit-scrollbar {
-    display: none !important; /* Chrome, Safari, Opera */
+    display: none !important;
+    /* Chrome, Safari, Opera */
   }
 
   h1,
@@ -68,12 +73,29 @@
   }
 
   /* DM Mono for all body/content text — NOT headings */
-  p, span, li, a, label, blockquote, small, td, th, figcaption, .font-body {
+  p,
+  span,
+  li,
+  a,
+  label,
+  blockquote,
+  small,
+  td,
+  th,
+  figcaption,
+  .font-body {
     font-family: "DM Mono", "Rethink Sans", monospace;
   }
 
   /* Ensure headings and navlinks keep display font */
-  h1, h2, h3, h4, h5, h6, button, nav a {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  button,
+  nav a {
     font-family: "Cabinet Grotesk", "Rethink Sans", sans-serif !important;
   }
 
@@ -118,8 +140,8 @@
   }
 
   /* Preserve neon green for brand-accented spans inside gradient headings */
-  .heading-gradient > .text-brand-primary,
-  .heading-gradient > span[class*="text-brand"] {
+  .heading-gradient>.text-brand-primary,
+  .heading-gradient>span[class*="text-brand"] {
     background: none !important;
     -webkit-background-clip: unset !important;
     background-clip: unset !important;
@@ -185,13 +207,14 @@
   animation-delay: 3s;
 }
 
-/* Hide Elfsight Free Widgets Branding */
+/* Hide Elfsight/SociableKIT Free Widgets Branding */
 a[href*="elfsight.com"],
 a[href*="apps.elfsight.com"],
 div[class*="CustomCopyright__Container"],
 div[class*="Badge__Container"],
 [class*="WidgetBackground__Container"]>a,
-a[title*="Free"] {
+a[title*="Free"],
+a[href*="sociablekit.com"] {
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
@@ -234,35 +257,22 @@ img {
   user-select: none !important;
 }
 
-/* ═══ Elfsight LinkedIn Feed — Mobile Responsive Fix ═══ */
-.elfsight-feed-wrapper {
-  overflow: visible;
-}
-
-.elfsight-feed-wrapper .eapps-widget-toolbar,
-.elfsight-feed-wrapper iframe,
-.elfsight-feed-wrapper > div {
+/* ═══ LinkedIn Feed — Mobile Responsive Fix ═══ */
+.elfsight-feed-wrapper,
+.sk-ww-linkedin-page-post,
+[class*="sk-"],
+.sociablekit-widget-container {
   width: 100% !important;
   max-width: 100% !important;
   min-width: 0 !important;
   box-sizing: border-box !important;
 }
 
-/* Force scroll on very small screens where the widget still overflows */
 @media (max-width: 640px) {
-  .elfsight-feed-wrapper {
+  .elfsight-feed-wrapper,
+  .sk-ww-linkedin-page-post,
+  [class*="sk-"] {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-
-  /* Scale the widget up so it's legible on small screens */
-  .elfsight-feed-wrapper .eapps-linkedin-page-posts-grid,
-  .elfsight-feed-wrapper .eapps-linkedin-page-posts-list {
-    width: 100% !important;
-  }
-
-  .elfsight-feed-wrapper iframe {
-    transform-origin: top left;
-    width: 100% !important;
-  }
-}
+}

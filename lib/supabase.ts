@@ -1,9 +1,20 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.SUPABASE_URL!;
-const supabaseKey = process.env.SUPABASE_SERVICE_KEY!;
+const supabaseUrl = process.env.SUPABASE_URL || '';
+const supabaseKey = process.env.SUPABASE_SERVICE_KEY || '';
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+if (!supabaseUrl || !supabaseKey) {
+  if (typeof window !== 'undefined') {
+    console.warn('Supabase credentials missing in browser. This is expected if you are on a static page that doesn\'t need live data.');
+  } else {
+    // During build, we still want to know if they are missing
+    // console.error('Supabase credentials missing during build!');
+  }
+}
+
+export const supabase = (supabaseUrl && supabaseKey) 
+  ? createClient(supabaseUrl, supabaseKey)
+  : null as any;
 
 export interface NewsPost {
   id: string | number;

@@ -6,11 +6,11 @@ const CustomCursor: React.FC = () => {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const requestRef = useRef<number>(0);
-  
+
   // Mouse position targets
   const mouseX = useRef<number>(0);
   const mouseY = useRef<number>(0);
-  
+
   // Ring current positions (for lerp)
   const ringX = useRef<number>(0);
   const ringY = useRef<number>(0);
@@ -39,10 +39,10 @@ const CustomCursor: React.FC = () => {
     const onMouseMove = (e: MouseEvent) => {
       mouseX.current = e.clientX;
       mouseY.current = e.clientY;
-      
+
       // Initial visibility once mouse moves
       if (!isVisible) setIsVisible(true);
-      
+
       // Update dot position instantly using translate3d for better performance
       if (dotRef.current) {
         dotRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
@@ -52,14 +52,14 @@ const CustomCursor: React.FC = () => {
     const animateRing = () => {
       // Lerp (Linear Interpolation) calculation
       const easing = 0.85;
-      
+
       ringX.current += (mouseX.current - ringX.current) * easing;
       ringY.current += (mouseY.current - ringY.current) * easing;
-      
+
       if (ringRef.current) {
         ringRef.current.style.transform = `translate3d(${ringX.current}px, ${ringY.current}px, 0) translate(-50%, -50%)`;
       }
-      
+
       requestRef.current = requestAnimationFrame(animateRing);
     };
 
@@ -75,17 +75,19 @@ const CustomCursor: React.FC = () => {
         target.closest('iframe') ||
         target.closest('[class*="elfsight"]') ||
         target.closest('[class*="eapps"]') ||
+        target.closest('[class*="sk-"]') ||
+        target.closest('[class*="sociablekit"]') ||
         target.closest('.panorama-viewer-wrapper')
       );
       setIsOverWidget(overWidget);
 
       const interactiveElements = ['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT'];
-      const isInteractive = interactiveElements.includes(target.tagName) || 
-                          target.closest('button') || 
-                          target.closest('a') ||
-                          target.getAttribute('role') === 'button' ||
-                          window.getComputedStyle(target).cursor === 'pointer';
-      
+      const isInteractive = interactiveElements.includes(target.tagName) ||
+        target.closest('button') ||
+        target.closest('a') ||
+        target.getAttribute('role') === 'button' ||
+        window.getComputedStyle(target).cursor === 'pointer';
+
       setIsHovering(!!isInteractive);
     };
 
@@ -95,7 +97,7 @@ const CustomCursor: React.FC = () => {
     window.addEventListener('mouseenter', onMouseEnter, { capture: true });
     window.addEventListener('mouseleave', onMouseLeave, { capture: true });
     window.addEventListener('mouseover', handleMouseOver, { capture: true });
-    
+
     requestRef.current = requestAnimationFrame(animateRing);
 
     return () => {
@@ -126,11 +128,11 @@ const CustomCursor: React.FC = () => {
           border: '2px solid rgba(255, 255, 255, 0.4)',
         }}
       />
-      
+
       {/* Secondary Cursor Ring */}
       <div
         ref={ringRef}
-        
+
         className={`fixed top-0 left-0 pointer-events-none rounded-full border-2 transition-all duration-500 ease-out z-[9998]
           ${isVisible && !isOverWidget ? 'opacity-100' : 'opacity-0'}`}
         style={{
@@ -143,9 +145,11 @@ const CustomCursor: React.FC = () => {
       />
 
       {/* Hide native cursor globally ONLY when this component is active (non-touch) */}
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         * { cursor: none !important; }
         iframe, iframe *, [class*="elfsight"], [class*="elfsight"] *, [class*="eapps"], [class*="eapps"] *,
+        [class*="sk-"], [class*="sk-"] *, [class*="sociablekit"], [class*="sociablekit"] *,
         .panorama-viewer-wrapper, .panorama-viewer-wrapper * {
           cursor: auto !important;
         }
