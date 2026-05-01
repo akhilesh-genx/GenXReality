@@ -263,7 +263,7 @@ export default function VirtualToursPage() {
                         </div>
                         <h4 className="text-white font-bold uppercase tracking-widest text-sm group-hover:text-brand-primary transition-colors">{item.title}</h4>
                       </div>
-                      <p className="text-white/60 font-mono text-xs leading-relaxed uppercase">
+                      <p className="text-white/60 font-sans text-xs leading-relaxed uppercase">
                         {item.text}
                       </p>
                     </div>

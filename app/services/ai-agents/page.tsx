@@ -86,7 +86,7 @@ export default function AiAgentsPage() {
                     />
                   ))}
                 </div>
-                <span className="text-brand-primary text-xs font-mono uppercase tracking-widest">Live Demo Available</span>
+                <span className="text-brand-primary text-xs font-sans uppercase tracking-widest">Live Demo Available</span>
               </div>
             </div>
           </div>

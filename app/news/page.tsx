@@ -57,13 +57,13 @@ export default async function NewsPage() {
                           className="object-cover transition-transform duration-700 group-hover/card:scale-110" 
                         />
                       )}
-                      <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-mono uppercase border border-white/10">
+                      <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-sans uppercase border border-white/10">
                         {category}
                       </div>
                     </div>
                     <div className={`flex-1 flex flex-col justify-center p-8 md:p-16 ${isImageRight ? 'md:order-1' : 'md:order-2'}`}>
                       <div className="flex justify-between items-center mb-6">
-                        <span className="text-sm text-brand-primary font-mono">{formatDate(article.created_at)}</span>
+                        <span className="text-sm text-brand-primary font-sans">{formatDate(article.created_at)}</span>
                       </div>
                       <h3 className="text-2xl md:text-4xl font-bold mb-6 group-hover/card:text-brand-primary transition-colors heading-gradient">{article.title}</h3>
                       <p className="text-white/80 text-lg leading-relaxed mb-8 line-clamp-3">{article.short_description}</p>

@@ -53,7 +53,7 @@ export default async function ArticlePage({ params }: Props) {
             <ArrowLeft className="w-4 h-4 mr-2" /> Back to News
           </Link>
           
-          <div className="mb-4 text-brand-cyan font-mono uppercase tracking-wider text-sm">
+          <div className="mb-4 text-brand-cyan font-sans uppercase tracking-wider text-sm">
             Trends
           </div>
           
