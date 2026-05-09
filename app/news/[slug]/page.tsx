@@ -8,7 +8,7 @@ import { getNewsPostBySlug, formatDate, getAllNewsPosts, getPostSlug } from '@/l
 export async function generateStaticParams() {
   const posts = await getAllNewsPosts();
   return posts.map((post) => ({
-    slug: getPostSlug(post.source_url),
+    slug: getPostSlug(post.id),
   }));
 }
 

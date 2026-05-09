@@ -45,22 +45,18 @@ export async function getAllNewsPosts(): Promise<NewsPost[]> {
   return (data ?? []) as NewsPost[];
 }
 
-/** Convert a source_url into a URL-safe internal slug */
-export function getPostSlug(source_url: string): string {
-  if (!source_url) return '';
-  // Simply encode the entire source_url to use as a unique slug
-  return encodeURIComponent(source_url);
+/** Convert an id into a URL-safe internal slug */
+export function getPostSlug(id: string | number): string {
+  return String(id);
 }
 
-/** Fetch a single news post by matching its source_url field */
+/** Fetch a single news post by matching its id field */
 export async function getNewsPostBySlug(slug: string): Promise<NewsPost | null> {
   try {
-    const decoded = decodeURIComponent(slug);
-
     const { data, error } = await supabase
       .from('Website_Auto_Post')
       .select('id, title, image_url, source_url, content, meta_description, short_description, category, created_at')
-      .eq('source_url', decoded)
+      .eq('id', slug)
       .maybeSingle();
 
     if (error) {
@@ -70,7 +66,7 @@ export async function getNewsPostBySlug(slug: string): Promise<NewsPost | null> 
 
     return data as NewsPost | null;
   } catch (err) {
-    console.error('Error decoding slug or fetching post:', err);
+    console.error('Error fetching post by ID:', err);
     return null;
   }
 }

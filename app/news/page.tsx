@@ -43,7 +43,7 @@ export default async function NewsPage() {
             ) : (
               uniqueCategoryArticles.map((article, index) => {
                 const isImageRight = index % 2 === 0;
-                const slug = getPostSlug(article.source_url);
+                const slug = getPostSlug(article.id);
                 const category = article.category || 'News';
                 
                 return (
